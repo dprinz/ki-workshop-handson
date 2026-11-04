@@ -25,9 +25,9 @@ Die Schriftgrössen für den Beamer stehen in `../einstellungen-jupyterlab/`, ge
 
 Danach im Menü *Kernel → Restart Kernel and Run All Cells*. Ein Lauf mit 150 Epochen dauert auf
 dem MacBook Pro mit M3 Pro rund 7 Sekunden, alle Zellen zusammen mit einer Variante rund 20
-Sekunden. In Colab auf der Gratis-CPU dauert ein Lauf 62 Sekunden (gemessen), das ganze
-Notebook mit Grundfall, zufälligen Labels und einer Variante also rund drei Minuten (geschätzt;
-`"mehr_daten"` ist etwas schneller, weil es nur 15-mal misst). Das Notebook
+Sekunden. In Colab auf der Gratis-CPU dauert ein Lauf 46 bis 62 Sekunden, das ganze
+Notebook mit Grundfall, zufälligen Labels und einer Variante rund drei Minuten (gemessen am
+4. November 2026 mit `"weight_decay"`; `"mehr_daten"` ist etwas schneller, weil es nur 15-mal misst). Das Notebook
 rechnet auf der CPU: Das kleine Netz ist dort so schnell wie auf der GPU, und der Lauf ist
 reproduzierbar. Es braucht kein Netz.
 

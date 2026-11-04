@@ -30,7 +30,7 @@ startet ein gestopptes Lab ebenfalls. Endet das Deck, enden die Labs, die es ges
 
 Danach im Menü *Kernel → Restart Kernel and Run All Cells*. Alle Zellen zusammen laufen auf dem
 MacBook Pro mit M3 Pro in rund 10 Sekunden, Training samt Prüfen in unter zwei Sekunden.
-In Colab auf der Gratis-CPU dauert das Training 55 bis 67 Sekunden (zwei Läufe am 4. November
+In Colab auf der Gratis-CPU dauert das Training 42 bis 67 Sekunden (drei Läufe am 4. November
 2026). Das Beispielfoto liegt im Ordner; ein eigenes Foto per URL braucht lokal unter einer
 Sekunde.
 

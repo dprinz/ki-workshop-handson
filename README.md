@@ -44,10 +44,10 @@ als ein aktueller Laptop. Gemessen in Colab am 4. November 2026:
 
 | Notebook | längster Schritt in Colab | auf dem MacBook Pro M3 Pro |
 |---|---|---|
-| Vogel oder Park | Training 55 s | unter 2 s |
+| Vogel oder Park | Training 42 bis 67 s (drei Läufe) | unter 2 s |
 | Was hat es gelernt? | Test mit Zoom und Unschärfe 30 s | wenige Sekunden |
 | Kreuzvalidierung | Merkmale berechnen 21 s | wenige Sekunden |
-| Auswendig gelernt | 62 s pro Lauf, sechs Läufe | 7 s pro Lauf |
+| Auswendig gelernt | 46 bis 62 s pro Lauf, drei Läufe | 7 s pro Lauf |
 | Tokenizer | Tokenizer laden 22 s | 9 bis 19 s |
 | Base gegen Instruct | Modelle laden 48 s, jede Antwort 12 bis 13,5 s; mit T4 83 s und 2 bis 3,5 s | 12 bis 16 s, jede Antwort 1,5 bis 3 s |
 | Template und Temperatur | Modell laden 35 s | 6 s |
