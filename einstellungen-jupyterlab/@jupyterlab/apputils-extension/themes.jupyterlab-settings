@@ -1,0 +1,9 @@
+{
+    // Schriftgrössen für den Beamer, gilt für alle Workshop-Labs.
+    // JupyterLab-Standard: Code 13px, Text 14px, Oberfläche 13px.
+    "overrides": {
+        "code-font-size": "20px",
+        "content-font-size1": "20px",
+        "ui-font-size1": "16px"
+    }
+}

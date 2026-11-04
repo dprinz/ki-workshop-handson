@@ -1,0 +1,14 @@
+[project]
+name = "overfitting-mnist"
+version = "0.1.0"
+description = "Workshop-Notebook: ein Netz lernt 1'000 Ziffern auswendig, und was dagegen hilft"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "jupyterlab>=4.4",
+    "matplotlib>=3.10",
+    "numpy>=2.0",
+    "torch>=2.7",
+]
+
+[tool.uv]
+package = false
