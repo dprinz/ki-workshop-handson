@@ -1,0 +1,11 @@
+[project]
+name = "mutation-von-hand"
+version = "0.1.0"
+description = "Workshop-Notebook: generierte Tests sind grün, aber würden sie rot, wenn die Logik fehlt?"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "jupyterlab>=4.4",
+]
+
+[tool.uv]
+package = false

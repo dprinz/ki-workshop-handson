@@ -1,0 +1,14 @@
+[project]
+name = "sprachmodell"
+version = "0.1.0"
+description = "Workshop-Notebooks: Qwen2.5 als Base und Instruct, Chat-Template und Temperatur"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "jupyterlab>=4.4",
+    "matplotlib>=3.10",
+    "torch>=2.7",
+    "transformers>=4.56",
+]
+
+[tool.uv]
+package = false

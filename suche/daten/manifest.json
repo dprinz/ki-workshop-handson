@@ -1,0 +1,483 @@
+{
+  "documents" : [ {
+    "id" : "astronomical-filter",
+    "title" : "Astronomical filter",
+    "topic" : "filters",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Astronomical_filter",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1361707340",
+    "retrievedAt" : "2026-10-05",
+    "core" : true
+  }, {
+    "id" : "hydrogen-alpha",
+    "title" : "Hydrogen-alpha",
+    "topic" : "filters",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Hydrogen-alpha",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1292503889",
+    "retrievedAt" : "2026-10-05",
+    "core" : true
+  }, {
+    "id" : "doubly-ionized-oxygen",
+    "title" : "Doubly ionized oxygen",
+    "topic" : "filters",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Doubly_ionized_oxygen",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1346004360",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "false-color",
+    "title" : "False color",
+    "topic" : "filters",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/False_color",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1377979730",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "light-pollution",
+    "title" : "Light pollution",
+    "topic" : "filters",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Light_pollution",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1372348702",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "bortle-scale",
+    "title" : "Bortle scale",
+    "topic" : "filters",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Bortle_scale",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1378107272",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "astrophotography",
+    "title" : "Astrophotography",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Astrophotography",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1375549197",
+    "retrievedAt" : "2026-10-05",
+    "core" : true
+  }, {
+    "id" : "image-noise",
+    "title" : "Image noise",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Image_noise",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1377731967",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "shot-noise",
+    "title" : "Shot noise",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Shot_noise",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1364169856",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "signal-to-noise-ratio-imaging",
+    "title" : "Signal-to-noise ratio (imaging)",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Signal-to-noise_ratio_(imaging)",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1349413362",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "dark-frame-subtraction",
+    "title" : "Dark-frame subtraction",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Dark-frame_subtraction",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1359409759",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "flat-field-correction",
+    "title" : "Flat-field correction",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Flat-field_correction",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1327842662",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "shift-and-add",
+    "title" : "Speckle imaging",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Speckle_imaging",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1371664839",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "lucky-imaging",
+    "title" : "Lucky imaging",
+    "topic" : "imaging",
+    "objectClass" : "PLANET",
+    "source" : "https://en.wikipedia.org/wiki/Lucky_imaging",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1311478941",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "astronomical-seeing",
+    "title" : "Astronomical seeing",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Astronomical_seeing",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1371964324",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "air-mass",
+    "title" : "Air mass (astronomy)",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Air_mass_(astronomy)",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1300998657",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "twilight",
+    "title" : "Twilight",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Twilight",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1377634303",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "extinction",
+    "title" : "Extinction (astronomy)",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Extinction_(astronomy)",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1370775535",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "telescope",
+    "title" : "Telescope",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Telescope",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1370790151",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "refracting-telescope",
+    "title" : "Refracting telescope",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Refracting_telescope",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1377068574",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "apochromat",
+    "title" : "Apochromat",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Apochromat",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1258653130",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "schmidt-cassegrain-telescope",
+    "title" : "Schmidt–Cassegrain telescope",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Schmidt–Cassegrain_telescope",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1335272197",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "newtonian-telescope",
+    "title" : "Newtonian telescope",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Newtonian_telescope",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1351952700",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "focal-length",
+    "title" : "Focal length",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Focal_length",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1363915976",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "f-number",
+    "title" : "F-number",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/F-number",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1373665070",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "field-of-view",
+    "title" : "Field of view",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Field_of_view",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1378372506",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "angular-resolution",
+    "title" : "Angular resolution",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Angular_resolution",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1378345248",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "charge-coupled-device",
+    "title" : "Charge-coupled device",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Charge-coupled_device",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1378029653",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "active-pixel-sensor",
+    "title" : "Active-pixel sensor",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Active-pixel_sensor",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1377524351",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "bayer-filter",
+    "title" : "Bayer filter",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Bayer_filter",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1356231480",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "equatorial-mount",
+    "title" : "Equatorial mount",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Equatorial_mount",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1367698679",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "autoguider",
+    "title" : "Autoguider",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Autoguider",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1297176197",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "emission-nebula",
+    "title" : "Emission nebula",
+    "topic" : "targets",
+    "objectClass" : "EMISSION_NEBULA",
+    "source" : "https://en.wikipedia.org/wiki/Emission_nebula",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1310064260",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "h-ii-region",
+    "title" : "H II region",
+    "topic" : "targets",
+    "objectClass" : "EMISSION_NEBULA",
+    "source" : "https://en.wikipedia.org/wiki/H_II_region",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1367648199",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "planetary-nebula",
+    "title" : "Planetary nebula",
+    "topic" : "targets",
+    "objectClass" : "PLANETARY_NEBULA",
+    "source" : "https://en.wikipedia.org/wiki/Planetary_nebula",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1367978926",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "supernova-remnant",
+    "title" : "Supernova remnant",
+    "topic" : "targets",
+    "objectClass" : "EMISSION_NEBULA",
+    "source" : "https://en.wikipedia.org/wiki/Supernova_remnant",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1359994952",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "galaxy",
+    "title" : "Galaxy",
+    "topic" : "targets",
+    "objectClass" : "GALAXY",
+    "source" : "https://en.wikipedia.org/wiki/Galaxy",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1377255274",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "open-cluster",
+    "title" : "Open cluster",
+    "topic" : "targets",
+    "objectClass" : "OTHER",
+    "source" : "https://en.wikipedia.org/wiki/Open_cluster",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1370790375",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "globular-cluster",
+    "title" : "Globular cluster",
+    "topic" : "targets",
+    "objectClass" : "OTHER",
+    "source" : "https://en.wikipedia.org/wiki/Globular_cluster",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1376863917",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "messier-object",
+    "title" : "Messier object",
+    "topic" : "targets",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Messier_object",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1372398875",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "apparent-magnitude",
+    "title" : "Apparent magnitude",
+    "topic" : "targets",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Apparent_magnitude",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1378329638",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "surface-brightness",
+    "title" : "Surface brightness",
+    "topic" : "targets",
+    "objectClass" : null,
+    "source" : "https://en.wikipedia.org/wiki/Surface_brightness",
+    "license" : "CC BY-SA 4.0",
+    "version" : "1371367127",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "pixel-scale-and-sampling",
+    "title" : "Pixel scale and sampling",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "AstroPlanner",
+    "license" : "CC BY-SA 4.0",
+    "version" : "2026-10-05",
+    "retrievedAt" : "2026-10-05",
+    "core" : true
+  }, {
+    "id" : "hoo-sho-and-lrgb",
+    "title" : "HOO, SHO and LRGB",
+    "topic" : "filters",
+    "objectClass" : null,
+    "source" : "AstroPlanner",
+    "license" : "CC BY-SA 4.0",
+    "version" : "2026-10-05",
+    "retrievedAt" : "2026-10-05",
+    "core" : true
+  }, {
+    "id" : "dithering",
+    "title" : "Dithering",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "AstroPlanner",
+    "license" : "CC BY-SA 4.0",
+    "version" : "2026-10-05",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "calibration-frames",
+    "title" : "Calibration frames",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "AstroPlanner",
+    "license" : "CC BY-SA 4.0",
+    "version" : "2026-10-05",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "sub-exposures-and-integration",
+    "title" : "Sub-exposures and integration time",
+    "topic" : "imaging",
+    "objectClass" : null,
+    "source" : "AstroPlanner",
+    "license" : "CC BY-SA 4.0",
+    "version" : "2026-10-05",
+    "retrievedAt" : "2026-10-05",
+    "core" : false
+  }, {
+    "id" : "mono-and-osc-cameras",
+    "title" : "Mono and one-shot colour cameras",
+    "topic" : "equipment",
+    "objectClass" : null,
+    "source" : "AstroPlanner",
+    "license" : "CC BY-SA 4.0",
+    "version" : "2026-10-05",
+    "retrievedAt" : "2026-10-05",
+    "core" : true
+  } ]
+}

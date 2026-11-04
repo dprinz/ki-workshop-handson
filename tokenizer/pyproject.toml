@@ -1,0 +1,14 @@
+[project]
+name = "tokenizer"
+version = "0.1.0"
+description = "Workshop-Notebook: zwei Tokenizer zerlegen Java, Deutsch, Englisch und Zahlen"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "ipywidgets>=8.1",  # Fortschrittsbalken beim Download, wie in Colab
+    "jupyterlab>=4.4",
+    "torch>=2.7",  # nur damit transformers nicht warnt; Colab hat torch ohnehin
+    "transformers>=4.50",
+]
+
+[tool.uv]
+package = false

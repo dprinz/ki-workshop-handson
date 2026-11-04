@@ -1,0 +1,301 @@
+{
+  "version": "2026-10-05",
+  "topK": 5,
+  "questions": [
+    {
+      "id": "D-01",
+      "question": "Wofür brauche ich einen OIII-Filter?",
+      "relevant": [
+        {
+          "documentId": "doubly-ionized-oxygen",
+          "section": "Ion"
+        },
+        {
+          "documentId": "astronomical-filter",
+          "section": "Specific emission line filters"
+        },
+        {
+          "documentId": "hoo-sho-and-lrgb",
+          "section": "Narrowband filters"
+        }
+      ]
+    },
+    {
+      "id": "D-02",
+      "question": "Was ist der Unterschied zwischen Breitband- und Schmalbandfiltern?",
+      "relevant": [
+        {
+          "documentId": "astronomical-filter",
+          "section": "Narrowband"
+        },
+        {
+          "documentId": "astronomical-filter",
+          "section": "Broadband"
+        },
+        {
+          "documentId": "hoo-sho-and-lrgb",
+          "section": "Narrowband filters"
+        }
+      ]
+    },
+    {
+      "id": "D-03",
+      "question": "Was bedeutet Pixel Scale?",
+      "relevant": [
+        {
+          "documentId": "pixel-scale-and-sampling",
+          "section": "Introduction"
+        }
+      ]
+    },
+    {
+      "id": "D-04",
+      "question": "Worin unterscheiden sich HOO und SHO?",
+      "relevant": [
+        {
+          "documentId": "hoo-sho-and-lrgb",
+          "section": "HOO"
+        },
+        {
+          "documentId": "hoo-sho-and-lrgb",
+          "section": "SHO"
+        }
+      ]
+    },
+    {
+      "id": "D-05",
+      "question": "Warum sollte ich zwischen den Aufnahmen dithern?",
+      "relevant": [
+        {
+          "documentId": "dithering",
+          "section": "Why dithering helps"
+        },
+        {
+          "documentId": "dithering",
+          "section": "Introduction"
+        }
+      ]
+    },
+    {
+      "id": "D-06",
+      "question": "Wozu dienen Flat-Frames?",
+      "relevant": [
+        {
+          "documentId": "calibration-frames",
+          "section": "Flat frames"
+        },
+        {
+          "documentId": "flat-field-correction",
+          "section": "Introduction"
+        },
+        {
+          "documentId": "flat-field-correction",
+          "section": "Overview"
+        }
+      ]
+    },
+    {
+      "id": "D-07",
+      "question": "Was ist ein Dark-Frame und wozu braucht man ihn?",
+      "relevant": [
+        {
+          "documentId": "calibration-frames",
+          "section": "Dark frames"
+        },
+        {
+          "documentId": "dark-frame-subtraction",
+          "section": "Introduction"
+        }
+      ]
+    },
+    {
+      "id": "D-08",
+      "question": "Was ist Seeing und wie wirkt es sich auf meine Bilder aus?",
+      "relevant": [
+        {
+          "documentId": "astronomical-seeing",
+          "section": "Introduction"
+        },
+        {
+          "documentId": "astronomical-seeing",
+          "section": "Effects"
+        }
+      ]
+    },
+    {
+      "id": "D-09",
+      "question": "Soll ich eine Monochrom- oder eine Farbkamera verwenden?",
+      "relevant": [
+        {
+          "documentId": "mono-and-osc-cameras",
+          "section": "Choosing a camera"
+        },
+        {
+          "documentId": "mono-and-osc-cameras",
+          "section": "One-shot colour cameras"
+        },
+        {
+          "documentId": "mono-and-osc-cameras",
+          "section": "Monochrome cameras"
+        }
+      ]
+    },
+    {
+      "id": "D-10",
+      "question": "Was passiert bei Undersampling?",
+      "relevant": [
+        {
+          "documentId": "pixel-scale-and-sampling",
+          "section": "Undersampling"
+        }
+      ]
+    },
+    {
+      "id": "D-11",
+      "question": "Wie lange sollte eine einzelne Belichtung sein?",
+      "relevant": [
+        {
+          "documentId": "sub-exposures-and-integration",
+          "section": "Choosing the sub-exposure length"
+        }
+      ]
+    },
+    {
+      "id": "D-12",
+      "question": "Warum wird das Bild mit mehr Integrationszeit besser?",
+      "relevant": [
+        {
+          "documentId": "sub-exposures-and-integration",
+          "section": "Why integration time matters"
+        },
+        {
+          "documentId": "signal-to-noise-ratio-imaging",
+          "section": "Introduction"
+        }
+      ]
+    },
+    {
+      "id": "D-13",
+      "question": "Was ist Lucky Imaging?",
+      "relevant": [
+        {
+          "documentId": "lucky-imaging",
+          "section": "Introduction"
+        },
+        {
+          "documentId": "lucky-imaging",
+          "section": "Explanation"
+        }
+      ]
+    },
+    {
+      "id": "D-14",
+      "question": "Was sagt die Bortle-Skala aus?",
+      "relevant": [
+        {
+          "documentId": "bortle-scale",
+          "section": "Introduction"
+        },
+        {
+          "documentId": "bortle-scale",
+          "section": "Scale"
+        }
+      ]
+    },
+    {
+      "id": "D-15",
+      "question": "Was ist die Airmass?",
+      "relevant": [
+        {
+          "documentId": "air-mass",
+          "section": "Introduction"
+        },
+        {
+          "documentId": "air-mass",
+          "section": "Definition"
+        }
+      ]
+    },
+    {
+      "id": "D-16",
+      "question": "Wann beginnt die astronomische Dämmerung?",
+      "relevant": [
+        {
+          "documentId": "twilight",
+          "section": "Astronomical twilight"
+        }
+      ]
+    },
+    {
+      "id": "D-17",
+      "question": "Was ist ein H-Alpha-Filter?",
+      "relevant": [
+        {
+          "documentId": "hydrogen-alpha",
+          "section": "Filter"
+        },
+        {
+          "documentId": "astronomical-filter",
+          "section": "Specific emission line filters"
+        }
+      ]
+    },
+    {
+      "id": "D-18",
+      "question": "Wie funktioniert ein Autoguider?",
+      "relevant": [
+        {
+          "documentId": "autoguider",
+          "section": "Introduction"
+        },
+        {
+          "documentId": "autoguider",
+          "section": "Usage"
+        }
+      ]
+    },
+    {
+      "id": "D-19",
+      "question": "Was ist ein Apochromat?",
+      "relevant": [
+        {
+          "documentId": "apochromat",
+          "section": "Introduction"
+        },
+        {
+          "documentId": "apochromat",
+          "section": "Explanation"
+        },
+        {
+          "documentId": "refracting-telescope",
+          "section": "Apochromatic refractors"
+        }
+      ]
+    },
+    {
+      "id": "D-20",
+      "question": "Was ist ein planetarischer Nebel?",
+      "relevant": [
+        {
+          "documentId": "planetary-nebula",
+          "section": "Introduction"
+        }
+      ]
+    },
+    {
+      "id": "N-01",
+      "question": "Wie alt ist das Universum?",
+      "relevant": []
+    },
+    {
+      "id": "N-02",
+      "question": "Wie viel Treibstoff braucht eine Rakete bis zum Mond?",
+      "relevant": []
+    },
+    {
+      "id": "N-03",
+      "question": "Welche Temperatur hat der Erdkern?",
+      "relevant": []
+    }
+  ]
+}

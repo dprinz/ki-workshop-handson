@@ -13,6 +13,7 @@ import io
 import re
 import time
 from pathlib import Path
+from urllib.parse import unquote, urlparse
 
 import matplotlib.pyplot as plt
 import requests
@@ -217,3 +218,90 @@ def zeige_bilder(bilder, titel=None, spalten=6, farben=None):
             achse.set_title(titel[i], fontsize=16, color=farben[i] if farben else "black")
     plt.tight_layout()
     plt.show()
+
+
+EIGENE = "eigene"  # heruntergeladene und hochgeladene Fotos, nicht im Repo
+
+
+def hole_foto(quelle, ordner=EIGENE):
+    """Liefert den Pfad zu einem eigenen Foto: per URL laden, in Colab hochladen oder lokal nehmen.
+
+    `quelle` ist eine URL, das Wort "hochladen" oder ein Dateipfad. Fehler meldet die Funktion
+    als Satz und gibt None zurück, damit im Notebook kein Traceback steht.
+    """
+    ziel = Path(ordner)
+    ziel.mkdir(exist_ok=True)
+    if quelle.startswith(("http://", "https://")):
+        return _foto_von_url(quelle, ziel)
+    if quelle == "hochladen":
+        return _foto_hochladen(ziel)
+    pfad = Path(quelle)
+    if not pfad.is_file():
+        print(f"Datei {pfad} nicht gefunden. Liegt sie im Ordner neben dem Notebook, etwa in probe/?")
+        return None
+    return _pruefe_bild(pfad)
+
+
+def _foto_von_url(url, ziel):
+    try:
+        antwort = requests.get(url, headers=KOPF, timeout=30)
+    except requests.Timeout:
+        print("Der Server antwortet nicht innerhalb von 30 Sekunden. Später nochmals oder ein anderes Bild versuchen.")
+        return None
+    except requests.RequestException:
+        print("Keine Verbindung. Stimmt die Adresse, und hat die Laufzeit Netz?")
+        return None
+    if antwort.status_code in (401, 403):
+        print(f"Der Server verweigert den Download ({antwort.status_code}). Manche Seiten sperren Skripte, ein anderes Bild versuchen.")
+        return None
+    if antwort.status_code == 404:
+        print("Unter dieser Adresse gibt es nichts (404). Ist die URL vollständig kopiert?")
+        return None
+    if antwort.status_code == 429:
+        print("Der Server bremst, zu viele Anfragen (429). Eine Minute warten oder ein Bild von einer anderen Seite nehmen.")
+        return None
+    if not antwort.ok:
+        print(f"Der Server meldet Fehler {antwort.status_code}. Ein anderes Bild versuchen.")
+        return None
+    if antwort.headers.get("Content-Type", "").startswith("text/html"):
+        print("Die Adresse zeigt auf eine Webseite, nicht auf ein Bild. Im Browser Rechtsklick aufs Bild, „Bildadresse kopieren“.")
+        return None
+    name = Path(unquote(urlparse(url).path)).stem
+    name = re.sub(r"[\W_]+", "-", re.sub(r"^\d+px-", "", name)).strip("-")[:60] or "foto"
+    pfad = ziel / f"{name}.jpg"
+    try:
+        bild = Image.open(io.BytesIO(antwort.content)).convert("RGB")
+    except OSError:
+        print("Die Antwort ist kein Bild, das PIL lesen kann. Die URL muss direkt auf eine JPEG- oder PNG-Datei zeigen.")
+        return None
+    bild.thumbnail((KANTE, KANTE))
+    bild.save(pfad, "JPEG", quality=85)
+    print(f"geladen: {pfad}")
+    return pfad
+
+
+def _foto_hochladen(ziel):
+    try:
+        from google.colab import files
+    except ImportError:
+        print("Hochladen geht nur in Colab. Lokal das Foto in den Ordner probe/ legen und den Pfad eintragen, etwa \"probe/mein-foto.jpg\".")
+        return None
+    hochgeladen = files.upload()  # öffnet die Dateiauswahl unter der Zelle
+    if not hochgeladen:
+        print("Keine Datei ausgewählt.")
+        return None
+    name, inhalt = next(iter(hochgeladen.items()))
+    pfad = ziel / Path(name).name
+    pfad.write_bytes(inhalt)
+    Path(name).unlink(missing_ok=True)  # Colab legt die Datei auch neben dem Notebook ab
+    return _pruefe_bild(pfad)
+
+
+def _pruefe_bild(pfad):
+    try:
+        with Image.open(pfad) as bild:
+            bild.verify()
+    except OSError:
+        print(f"{pfad} lässt sich nicht als Bild öffnen. HEIC vom iPhone kann PIL nicht lesen, als JPEG exportieren.")
+        return None
+    return pfad
