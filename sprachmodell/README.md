@@ -81,29 +81,28 @@ Modells und Temperatur 0,8, top_p 0,9. Die Ausgaben sind ohne stderr gespeichert
 
 ## Gemessen und geschätzt
 
-Lokal: MacBook Pro M3 Pro, Modelle schon im Cache, 2026-11-04. Colab: aus dem Machbarkeitstest
-vom 2026-11-04 (Download, Laden, Token pro Sekunde); die Zeiten pro Zelle sind daraus geschätzt,
-die Notebooks selbst sind in Colab noch nicht gelaufen.
+Lokal: MacBook Pro M3 Pro, Modelle schon im Cache, 2026-11-04. Colab: beide Notebooks mit
+„Alle ausführen“ am 2026-11-04 in einer frischen Laufzeit des Gratis-Kontos, also mit Download.
 
 **Base gegen Instruct**, ganzes Notebook lokal: 42 s mit 1,5B auf MPS, 44 s mit 0,5B auf der CPU.
 
 | Zelle | lokal | Colab mit T4 (1,5B) | Colab ohne GPU (0,5B) |
 |---|---|---|---|
-| 1. Modelle laden | 16 s (1,5B), 12 s (0,5B) | rund 2 min, gemessen 125 s mit Laden | rund 45 s, gemessen 15 s Download pro Modell, Laden 11 und 2 s |
-| 2. bis 4., je zwei Antworten mit 50 Token | 3 bis 6 s | rund 5 s (22 Token/s) | rund 25 s (4,3 Token/s) |
+| 1. Modelle laden | 16 s (1,5B), 12 s (0,5B) | 83 s (44 s Download, 39 s Laden) | 48 s (22 s Download, 15 s Laden) |
+| 2. bis 4., je zwei Antworten mit 50 Token | 3 bis 6 s | 2 bis 3,5 s pro Antwort | 12 bis 13,5 s pro Antwort |
 | 5. Nachhaken, zwei Antworten | 3 s | rund 5 s | rund 25 s |
-| Zusatz A, Lösung mit bis zu 100 Token | 2 s | bis 5 s | bis 25 s |
+| Zusatz A, Lösung mit bis zu 100 Token | 2 s | bis 7 s | bis 27 s |
 | Zusatz B | 3 s | rund 5 s | rund 25 s, mit `max_token=100` rund 50 s |
 
-Pflicht in Colab: ohne GPU rund 2,5 Minuten Rechenzeit, mit GPU ähnlich, weil dort der Download
-dominiert. Die erste Zelle startet deshalb, während noch erklärt wird.
+Ganzes Notebook in Colab: mit T4 rund 2,5 Minuten, ohne GPU rund 3,5 Minuten. Die erste Zelle
+startet deshalb, während noch erklärt wird. Zusatz A und B sind aus der Token-Rate hochgerechnet.
 
-**Template und Temperatur**, ganzes Notebook lokal 16 s.
+**Template und Temperatur**, ganzes Notebook lokal 16 s, in Colab ohne GPU rund 1,5 Minuten.
 
 | Zelle | lokal | Colab ohne GPU |
 |---|---|---|
 | 1. Tokenizer und Template | 4 s | einige Sekunden (nur Tokenizer-Dateien, rund 11 MB) |
-| 2. Modell laden | 6 s | rund 20 s, gemessen 15 s Download und 2 s Laden |
+| 2. Modell laden | 6 s | 35 s mit Download |
 | 3. Vorwärtslauf und Balken | 2,4 s | rund 3 s, gemessen 1,9 s für den Vorwärtslauf |
 | 4. Zehnmal ziehen, Lösung | unter 0,1 s | unter 1 s |
 | Zusatz, Lösung (je ein, zwei Vorwärtsläufe) | 0,7 s | 2 bis 4 s |
@@ -141,8 +140,8 @@ geladen von Hugging Face (`Qwen/Qwen2.5-…`). Die Notebooks enthalten keine Dat
 
 ## Bekannte Grenzen
 
-- Die Notebooks sind lokal gelaufen, nicht in Colab. Ob Colab beim Laden eine Warnung zu
-  `HF_TOKEN` zeigt und wie der Menüpunkt für die GPU auf Deutsch genau heisst, ist nicht geprüft.
+- In Colab erscheint beim Laden eine Warnung, dass das Secret `HF_TOKEN` fehlt; das Notebook
+  sagt, dass sie harmlos ist. Der Menüpunkt heisst *Laufzeit → Laufzeittyp ändern*, dort *T4 GPU*.
 - Ob 15 Gratis-Konten gleichzeitig eine T4 bekommen, sagt Google nicht zu. Ohne GPU läuft 0,5B,
   und der Anhang zeigt den Probelauf mit 1,5B.
 - Mit 50 Token sind fast alle Antworten abgeschnitten. In der Tabelle der Folie durfte Llama 3.1 8B

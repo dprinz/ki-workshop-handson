@@ -86,7 +86,7 @@ MacBook Pro M3 Pro, `nbconvert --execute`: alle Zellen zusammen 1,3 s (mit Kerne
 | alle acht Mutationen (neun Prozesse) | 0,4 s | 2 bis 10 s |
 | Zusatz mit eigenem Test und Lösung | je 0,5 s | 2 bis 10 s |
 
-Die Zeit geht fast ganz in den Start der Python-Prozesse, nicht in die Tests. In Colab nicht gemessen.
+Die Zeit geht fast ganz in den Start der Python-Prozesse, nicht in die Tests. In Colab (frische Laufzeit, Gratis-CPU, „Alle ausführen“, 2026-11-04) lief das Notebook ohne Fehler, die 61 Tests grün, die Mutationen wie in der Tabelle unten; pro Zelle nicht gemessen.
 
 Ergebnis der Mutationen mit den generierten Tests:
 

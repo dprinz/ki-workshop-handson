@@ -45,7 +45,7 @@ Der `curl` darin zielt auf `127.0.0.1`.
 
 MacBook Pro M3 Pro, `nbconvert --execute`, 2026-11-04. Alle Code-Zellen zusammen unter 0,5 s;
 die einzige messbare Zelle ist der Aufruf von `env_hook.py` als Unterprozess (0,3 s). Colab-CPU,
-geschätzt: jede Zelle unter 1 s, der Unterprozess 1 bis 2 s. Nicht in Colab gemessen. Gebraucht
+geschätzt: jede Zelle unter 1 s, der Unterprozess 1 bis 2 s. In Colab (frische Laufzeit, Gratis-CPU, „Alle ausführen“, 2026-11-04) liefen beide Notebooks ohne Fehler in wenigen Sekunden. Gebraucht
 wird nur die Standardbibliothek, kein `pip install`.
 
 ## Woher die Angaben stammen

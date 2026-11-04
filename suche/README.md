@@ -118,7 +118,9 @@ Bettet jeden Chunk zweimal ein, mit `passage: ` und ohne, und speichert float16.
 
 ## Bekannte Grenzen
 
-- In Colab nicht gelaufen. Zeiten dort sind geschätzt, auch der Download.
+- In Colab (frische Laufzeit, Gratis-CPU, „Alle ausführen“, 2026-11-04) liefen beide Notebooks ohne Fehler, die Ähnlichkeitssuche samt Download in rund einer
+  Minute, mit denselben Werten wie lokal (Hit Rate@5 0,95, MRR@5 0,90). Die Zeiten pro Schritt in
+  der Tabelle oben sind geschätzt.
 - Die Ergebnisse weichen leicht von der Live-Demo ab (Tabelle oben); beim Alter des Universums ist
   der beste Treffer ein anderer. Beide Notebooks sagen das an der Stelle, wo es auffällt.
 - `daten/HERKUNFT-ASTROPLANNER.md` verweist auf Dateien und Abschnitte von AstroPlanner, die im

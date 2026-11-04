@@ -30,8 +30,9 @@ startet ein gestopptes Lab ebenfalls. Endet das Deck, enden die Labs, die es ges
 
 Danach im Menü *Kernel → Restart Kernel and Run All Cells*. Alle Zellen zusammen laufen auf dem
 MacBook Pro mit M3 Pro in rund 10 Sekunden, Training samt Prüfen in unter zwei Sekunden.
-In Colab auf der Gratis-CPU dauert das Training 55 Sekunden (gemessen). Das eigene Foto per URL
-braucht lokal unter einer Sekunde, in Colab geschätzt wenige Sekunden.
+In Colab auf der Gratis-CPU dauert das Training 55 bis 67 Sekunden (zwei Läufe am 4. November
+2026). Das Beispielfoto liegt im Ordner; ein eigenes Foto per URL braucht lokal unter einer
+Sekunde.
 
 ## Was im Ordner liegt
 
@@ -42,6 +43,7 @@ braucht lokal unter einer Sekunde, in Colab geschätzt wenige Sekunden.
 | `was_hat_es_gelernt.ipynb` | Worauf das Modell schaut, Verdecken, Zoom, Unschärfe, kleiner Vogel im Park. Live am Ende der Grundlagen |
 | `helfer.py` | Bilder laden und anzeigen, ein eigenes Foto holen, damit das Notebook den Ablauf zeigt und nicht HTTP-Aufrufe |
 | `daten/` | 100 Vögel, 100 Parks, verkleinert auf 400 Pixel |
+| `beispiel/kohlmeise.jpg` | Beispielfoto für die letzte Zelle (Kohlmeise, CC0) |
 | `probe/` | acht schwierige Fälle, die weder im Training noch in der Validierung vorkommen; lokal kann hier auch ein eigenes Foto liegen |
 | `eigene/` | Fotos aus der letzten Zelle, per URL geladen oder in Colab hochgeladen; nicht im Repo |
 | `daten/quellen.csv` | Urheber, Lizenz und Quelle jedes Bildes, auch der schwierigen Fälle |
@@ -71,12 +73,14 @@ also nichts für den Live-Teil.
 
 Das Beispiel in der Zelle für ein eigenes Foto ist „Kohlmeise (April 2025)“ von Romzig auf
 Wikimedia Commons, gemeinfrei (CC0):
-<https://commons.wikimedia.org/wiki/File:Kohlmeise_(April_2025).jpg>. Das Notebook lädt die
-Vorschau mit 960 Pixeln Breite; das Modell sagt Vogel mit 99 %.
+<https://commons.wikimedia.org/wiki/File:Kohlmeise_(April_2025).jpg>. Die Vorschau mit 960 Pixeln
+Breite liegt als `beispiel/kohlmeise.jpg` im Ordner; das Modell sagt Vogel mit 99 %. Zuerst lud
+das Notebook sie direkt von Wikimedia, doch im Test in Colab am 4. November 2026 antwortete der
+Server mit 429 (zu viele Anfragen). Eigene Fotos per URL können genauso scheitern; dann hochladen.
 
 Die Download-Zelle lädt nichts, solange die Bilder im Ordner liegen. Das Notebook läuft deshalb
-ohne Netz, wenn die Modellgewichte einmal geladen sind (`~/.cache/torch/hub/checkpoints/`). Nur
-die letzte Zelle mit der Beispiel-URL braucht Netz; ohne meldet sie „Keine Verbindung“.
+ohne Netz, wenn die Modellgewichte einmal geladen sind (`~/.cache/torch/hub/checkpoints/`). Netz
+braucht nur ein eigenes Foto per URL; ohne meldet die letzte Zelle „Keine Verbindung“.
 Wer den Download sehen will, entfernt `daten/` und lässt die Zelle laufen; die Bilder sind dann
 ungeprüft. `git restore daten` holt den durchgesehenen Stand zurück.
 
@@ -97,6 +101,6 @@ ungeprüft. `git restore daten` holt den durchgesehenen Stand zurück.
 - Es gibt nur zwei Klassen. Ein Foto ohne Vogel und ohne Park bekommt trotzdem eine der beiden
   Antworten.
 - Eigenes Foto: Die URL muss direkt auf das Bild zeigen, nicht auf eine Seite. Manche Server
-  sperren Skripte (403) oder bremsen (429, bei Wikimedia beobachtet für eine nicht vorhandene
-  Datei); die Zelle meldet das als Satz. HEIC-Fotos vom iPhone liest PIL nicht. Der Upload in
+  sperren Skripte (403) oder bremsen (429, bei Wikimedia beobachtet, aus Colab auch für ein
+  vorhandenes Bild); die Zelle meldet das als Satz. HEIC-Fotos vom iPhone liest PIL nicht. Der Upload in
   Colab (`google.colab.files.upload()`) ist lokal nicht geprüft.

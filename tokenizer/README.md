@@ -59,14 +59,12 @@ Kantonalbank“ in sechs, „ strawberry“ ist ein Token. GPT-2 braucht für de
 MacBook Pro mit M3 Pro, Heimnetz, 2026-11-04. Nur die erste Code-Zelle braucht Zeit, alle
 anderen laufen in unter 0,1 Sekunden.
 
-| Zelle | lokal, leerer Cache | lokal, Cache warm | Colab-CPU, geschätzt |
+| Zelle | lokal, leerer Cache | lokal, Cache warm | Colab-CPU, gemessen |
 |---|---|---|---|
-| 1 · Tokenizer laden (Import, Download 14 MB, Aufbau) | 19 s | 9 s | 15 bis 30 s |
+| 1 · Tokenizer laden (Import, Download 14 MB, Aufbau) | 19 s | 9 s | 22 s |
 | alle übrigen | unter 0,1 s | unter 0,1 s | unter 1 s |
 
-Die Schätzung für Colab ist nicht gemessen. Sie nimmt an, dass der Import von `transformers` auf
-zwei vCPU einige Sekunden länger dauert und der Download aus dem Rechenzentrum mindestens so
-schnell ist wie lokal. Ohne Netz, mit Cache, lädt die Zelle beide Tokenizer in 0,2 s
+Colab: frische Laufzeit, „Alle ausführen“, 2026-11-04. Ohne Netz, mit Cache, lädt die Zelle beide Tokenizer in 0,2 s
 (`HF_HUB_OFFLINE=1`).
 
 ## Bekannte Grenzen

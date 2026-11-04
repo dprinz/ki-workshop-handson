@@ -46,7 +46,7 @@ Lokal auf dem MacBook Pro mit M3 Pro, Git 2.56.0, am 4. November 2026:
 | Klonen (rund 10 MB) | 192 s, langsames WLAN | wenige Sekunden |
 | Worktrees anlegen, ändern, Branch doppelt, Zusatz, Aufräumen | je unter 0,2 s | je unter 1 s |
 
-Die Zeit hängt fast nur am Klon. In Colab nicht gemessen.
+Die Zeit hängt fast nur am Klon. In Colab (frische Laufzeit, Gratis-CPU, „Alle ausführen“, 2026-11-04) lief das Notebook ohne Fehler; pro Zelle nicht gemessen.
 
 ## Bekannte Grenzen
 
