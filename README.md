@@ -18,10 +18,25 @@ In Colab *Laufzeit → Alle ausführen*. Die erste Code-Zelle klont dieses Repo 
 weil Colab nur das Notebook öffnet, nicht die Hilfsdateien und Bilder daneben. Lokal tut sie
 nichts. Ein Google-Konto braucht es für Colab, einen API-Key nicht.
 
-Eine GPU braucht es nicht. Nur auf der CPU mit zwei Threads läuft jedes Notebook in unter einer
-halben Minute (gemessen auf dem Mac, Colab dürfte etwas langsamer sein). Mit GPU-Laufzeit
-nehmen die Vogel-Notebooks sie automatisch, das Overfitting-Notebook rechnet absichtlich auf der
-CPU.
+Colab fragt beim ersten Ausführen nach, weil das Notebook nicht von Google stammt:
+*Trotzdem ausführen*.
+
+Eine GPU braucht es nicht, die kostenlose CPU-Laufzeit reicht. Sie ist aber deutlich langsamer
+als ein aktueller Laptop. Gemessen in Colab am 4. November 2026:
+
+| Notebook | längster Schritt in Colab | auf dem MacBook Pro M3 Pro |
+|---|---|---|
+| Vogel oder Park | Training 55 s | unter 2 s |
+| Was hat es gelernt? | Test mit Zoom und Unschärfe 30 s | wenige Sekunden |
+| Kreuzvalidierung | Merkmale berechnen 21 s | wenige Sekunden |
+| Auswendig gelernt | 62 s pro Lauf, sechs Läufe | 7 s pro Lauf |
+
+Mit *Laufzeit → Laufzeittyp ändern → T4-GPU* nutzen die Vogel-Notebooks die GPU automatisch. Das
+Overfitting-Notebook rechnet absichtlich auf der CPU.
+
+Das kostenlose Colab erlaubt nur wenige Sitzungen gleichzeitig. Wer mehrere Notebooks
+nacheinander ausführt, beendet die fertigen mit *Laufzeit → Verbindung trennen und Laufzeit
+löschen*.
 
 ## Lokal starten
 
