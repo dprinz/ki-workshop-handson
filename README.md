@@ -7,30 +7,31 @@ Testversion: Inhalt und Aufbau ändern sich noch.
 
 ## In Colab öffnen
 
-Die Übungen in der Reihenfolge des Workshops. Jede ist für 10 bis 15 Minuten zu zweit gedacht,
-mit einem Pflichtteil und einer Zusatzaufgabe; die Lösungen liegen zugeklappt im Notebook.
+Die Übungen in der Reihenfolge des Workshops. Die Nummer steht auf der Folie und vor dem Ordner.
+Jede ist für 10 bis 15 Minuten zu zweit gedacht, mit einem Pflichtteil und einer Zusatzaufgabe;
+die Lösungen liegen zugeklappt im Notebook.
 
-| Tag | Übung | Inhalt | Colab |
-|---|---|---|---|
-| 1 | Vogel oder Park | Ein vortrainiertes Bildmodell lernt, Vögel von Parks zu unterscheiden; eigenes Foto testen | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/birds/vogel_oder_park.ipynb) |
-| 1 | Python am Neuron | So viel Python, wie die Übungen brauchen, für Java-Entwickler; ein Neuron und das XOR-Netz nachrechnen. Auch als Vorbereitung vor dem Workshop | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/python-am-neuron/python_am_neuron.ipynb) |
-| 1 | Auswendig gelernt | Ein Netz lernt 1'000 MNIST-Ziffern auswendig, und was dagegen hilft | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/overfitting/overfitting.ipynb) |
-| 1 | Tokenizer | Wie Qwen2.5 und GPT-2 Text in Token zerlegen | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/tokenizer/tokenizer.ipynb) |
-| 1 | Base gegen Instruct | Dasselbe Sprachmodell vor und nach dem Post-Training | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/sprachmodell/base_und_instruct.ipynb) |
-| 1 | Template und Temperatur | Was das Modell wirklich bekommt, und die Verteilung für das nächste Token | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/sprachmodell/template_und_temperatur.ipynb) |
-| 1 | Ähnlichkeitssuche | Eine Vektorsuche als Schleife über 643 Textstücke | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/suche/aehnlichkeitssuche.ipynb) |
-| 2 | Suche messen | Hit Rate und MRR über 20 Testfragen | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/suche/suche_messen.ipynb) |
-| 2 | Einen Hook schreiben | Ein Hook für Claude Code, der die `.env` schützt | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/hook/hook_schreiben.ipynb) |
-| 2 | Mutation von Hand | Würde ein Test rot, wenn die Logik fehlt? | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/mutation/mutation_von_hand.ipynb) |
-| 2 | Worktrees | Zwei Arbeitskopien eines Repos nebeneinander | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/worktrees/worktrees.ipynb) |
-| 2 | Hook gegen Exfiltration | Den Hook gegen Abfluss nach aussen erweitern, und wo er an Grenzen stösst | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/hook/hook_exfiltration.ipynb) |
+| Nr | Tag | Übung | Inhalt | Colab |
+|---|---|---|---|---|
+| 01 | 1 | Vogel oder Park | Ein vortrainiertes Bildmodell lernt, Vögel von Parks zu unterscheiden; eigenes Foto testen | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/01-vogel-oder-park/vogel_oder_park.ipynb) |
+| 02 | 1 | Python am Neuron | So viel Python, wie die Übungen brauchen, für Java-Entwickler; ein Neuron und das XOR-Netz nachrechnen. Auch als Vorbereitung vor dem Workshop | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/02-python-am-neuron/python_am_neuron.ipynb) |
+| 03 | 1 | Auswendig gelernt | Ein Netz lernt 1'000 MNIST-Ziffern auswendig, und was dagegen hilft | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/03-auswendig-gelernt/overfitting.ipynb) |
+| 04 | 1 | Tokenizer | Wie Qwen2.5 und GPT-2 Text in Token zerlegen | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/04-tokenizer/tokenizer.ipynb) |
+| 05 | 1 | Base gegen Instruct | Dasselbe Sprachmodell vor und nach dem Post-Training | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/05-base-gegen-instruct/base_und_instruct.ipynb) |
+| 06 | 1 | Template und Temperatur | Was das Modell wirklich bekommt, und die Verteilung für das nächste Token | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/06-template-und-temperatur/template_und_temperatur.ipynb) |
+| 07 | 1 | Ähnlichkeitssuche | Eine Vektorsuche als Schleife über 643 Textstücke | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/07-aehnlichkeitssuche/aehnlichkeitssuche.ipynb) |
+| 08 | 2 | Suche messen | Hit Rate und MRR über 20 Testfragen | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/08-suche-messen/suche_messen.ipynb) |
+| 09 | 2 | Einen Hook schreiben | Ein Hook für Claude Code, der die `.env` schützt | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/09-hook-schreiben/hook_schreiben.ipynb) |
+| 10 | 2 | Mutation von Hand | Würde ein Test rot, wenn die Logik fehlt? | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/10-mutation-von-hand/mutation_von_hand.ipynb) |
+| 11 | 2 | Hook gegen Exfiltration | Den Hook gegen Abfluss nach aussen erweitern, und wo er an Grenzen stösst | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/11-hook-gegen-exfiltration/hook_exfiltration.ipynb) |
 
 Zum Nachlesen, im Workshop nicht als Übung:
 
 | Notebook | Inhalt | Colab |
 |---|---|---|
-| Was hat es gelernt? | Worauf das Vogel-Modell schaut: Verdecken, Zoom, Unschärfe | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/birds/was_hat_es_gelernt.ipynb) |
-| Kreuzvalidierung | Wie viel eine Trefferquote auf 40 Bildern wert ist | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/birds/kreuzvalidierung.ipynb) |
+| Was hat es gelernt? | Worauf das Vogel-Modell schaut: Verdecken, Zoom, Unschärfe | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/01-vogel-oder-park/was_hat_es_gelernt.ipynb) |
+| Kreuzvalidierung | Wie viel eine Trefferquote auf 40 Bildern wert ist | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/01-vogel-oder-park/kreuzvalidierung.ipynb) |
+| Worktrees | Zwei Arbeitskopien eines Repos nebeneinander | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/nachlesen-worktrees/worktrees.ipynb) |
 
 In Colab *Laufzeit → Alle ausführen*. Die erste Code-Zelle klont dieses Repo nach `/content`,
 weil Colab nur das Notebook öffnet, nicht die Hilfsdateien und Bilder daneben. Lokal tut sie
@@ -69,11 +70,11 @@ löschen*.
 Mit [uv](https://docs.astral.sh/uv/), Python 3.12:
 
 ```bash
-cd birds && uv sync && uv run jupyter lab vogel_oder_park.ipynb
+cd 01-vogel-oder-park && uv sync && uv run jupyter lab vogel_oder_park.ipynb
 ```
 
 ```bash
-cd overfitting && uv sync && uv run jupyter lab overfitting.ipynb
+cd 03-auswendig-gelernt && uv sync && uv run jupyter lab overfitting.ipynb
 ```
 
 Die übrigen Ordner genauso: `cd <ordner> && uv sync && uv run jupyter lab`.
@@ -83,10 +84,10 @@ Mehr zu Daten, Modell und bekannten Grenzen steht im README des jeweiligen Ordne
 ## Daten und Lizenzen
 
 - Vögel von iNaturalist, Parks und Landschaften von Wikimedia Commons, jeweils gemeinfrei, CC0
-  oder CC BY. Urheber, Lizenz und Quelle jedes Bildes stehen in `birds/daten/quellen.csv`.
+  oder CC BY. Urheber, Lizenz und Quelle jedes Bildes stehen in `01-vogel-oder-park/daten/quellen.csv`.
 - MNIST: Yann LeCun, Corinna Cortes, Christopher J. C. Burges, CC BY-SA 3.0.
 - Texte der Ähnlichkeitssuche: englische Wikipedia und Kurzdokumente aus dem Projekt AstroPlanner,
-  CC BY-SA 4.0, Herkunft in `suche/daten/`.
+  CC BY-SA 4.0, Herkunft in `07-aehnlichkeitssuche/daten/`.
 - Modelle von Hugging Face, beim Ausführen geladen: Qwen2.5 (Apache 2.0), GPT-2 (MIT),
   multilingual-e5-small (MIT).
 - Die Idee zu „Vogel oder Park“ stammt aus dem fast.ai-Tutorial
