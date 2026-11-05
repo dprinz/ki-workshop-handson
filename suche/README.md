@@ -46,7 +46,7 @@ plus 17 MB Tokenizer) in den Cache unter `~/.cache/huggingface/`; danach braucht
 ## Gemessen
 
 MacBook Pro mit M3 Pro, `OMP_NUM_THREADS=2` wie die zwei vCPU in Colab, Modell schon im Cache.
-Colab ist nicht gemessen. Die Schätzung nimmt den Faktor 6 aus dem Vergleich bei Qwen2.5-0.5B
+In Colab gemessen ist nur das ganze Notebook „Suche messen“ (siehe unten); die Schätzung pro Schritt nimmt den Faktor 6 aus dem Vergleich bei Qwen2.5-0.5B
 (26 gegen 4,3 Token/s bei gleich vielen Threads) und für den Download 15 bis 50 MB/s.
 
 | Schritt | lokal | Colab-CPU, geschätzt |
@@ -119,8 +119,9 @@ Bettet jeden Chunk zweimal ein, mit `passage: ` und ohne, und speichert float16.
 ## Bekannte Grenzen
 
 - In Colab (frische Laufzeit, Gratis-CPU, „Alle ausführen“, 2026-11-04) liefen beide Notebooks ohne Fehler, die Ähnlichkeitssuche samt Download in rund einer
-  Minute, mit denselben Werten wie lokal (Hit Rate@5 0,95, MRR@5 0,90). Die Zeiten pro Schritt in
-  der Tabelle oben sind geschätzt.
+  Minute, mit denselben Werten wie lokal (Hit Rate@5 0,95, MRR@5 0,90). „Suche messen“ lief
+  in einer frischen Laufzeit samt Verbinden und Modell-Download in 49 s (2026-11-04). Die Zeiten pro
+  Schritt in der Tabelle oben sind geschätzt.
 - Die Ergebnisse weichen leicht von der Live-Demo ab (Tabelle oben); beim Alter des Universums ist
   der beste Treffer ein anderer. Beide Notebooks sagen das an der Stelle, wo es auffällt.
 - `daten/HERKUNFT-ASTROPLANNER.md` verweist auf Dateien und Abschnitte von AstroPlanner, die im

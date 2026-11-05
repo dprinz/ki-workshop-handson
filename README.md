@@ -52,7 +52,8 @@ als ein aktueller Laptop. Gemessen in Colab am 4. November 2026:
 | Base gegen Instruct | Modelle laden 48 s, jede Antwort 12 bis 13,5 s; mit T4 83 s und 2 bis 3,5 s | 12 bis 16 s, jede Antwort 1,5 bis 3 s |
 | Template und Temperatur | Modell laden 35 s | 6 s |
 | Ähnlichkeitssuche | ganzes Notebook rund eine Minute | erste Zelle 7 bis 11 s |
-| Python am Neuron, Suche messen, Hooks, Mutation, Worktrees | wenige Sekunden | unter einer Sekunde, Worktrees ohne den Klon |
+| Suche messen | ganzes Notebook 49 s, samt Download | erste Zelle 7 bis 11 s |
+| Python am Neuron, Hooks, Mutation, Worktrees | wenige Sekunden | unter einer Sekunde, Worktrees ohne den Klon |
 
 Mit *Laufzeit → Laufzeittyp ändern → T4-GPU* nutzen die Vogel-Notebooks die GPU automatisch. Das
 Overfitting-Notebook rechnet absichtlich auf der CPU. „Base gegen Instruct“ nimmt mit GPU das

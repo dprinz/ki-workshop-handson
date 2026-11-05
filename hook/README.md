@@ -9,7 +9,7 @@ kein Netz, jede Zelle läuft in Millisekunden.
 | Notebook | Wann im Workshop | Pflicht | Zusatz |
 |---|---|---|---|
 | `hook_schreiben.ipynb` | Tag 2 vor dem Mittag, nach der Folie „Hooks: Skripte an festen Stellen der Tool-Schleife“ | Lesen und Schreiben der `.env` blockieren, mit jedem Tool und in der Shell; `.env.example` bleibt erlaubt. 13 Aufrufe | einen Aufruf finden, den der eigene Hook durchlässt |
-| `hook_exfiltration.ipynb` | Tag 2 am Nachmittag bei Security, nach der Folie „Folgt der Agent dem Kommentar in der README?“ | den Hook vom Mittag (als Startpunkt in der ersten Zelle) gegen Abfluss an fremde Hosts erweitern: `curl`, `wget`, Python mit `requests` oder `urllib`; `localhost`, GitHub und Maven Central bleiben erlaubt. 14 Aufrufe | einen Aufruf finden, der trotzdem durchkommt, und lesen, was die Sandbox laut Doku enger fasst |
+| `hook_exfiltration.ipynb` | Tag 2 am Nachmittag bei Security, nach der Folie „Folgt der Agent dem Kommentar in der README?“ | den Hook vom Vormittag (als Startpunkt in der ersten Zelle) gegen Abfluss an fremde Hosts erweitern: `curl`, `wget`, Python mit `requests` oder `urllib`; `localhost`, GitHub und Maven Central bleiben erlaubt. 14 Aufrufe | einen Aufruf finden, der trotzdem durchkommt, und lesen, was die Sandbox laut Doku enger fasst |
 
 Zeitbox je 15 min, zu zweit. Das zweite Notebook hängt nicht vom ersten ab.
 
