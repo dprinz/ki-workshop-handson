@@ -30,7 +30,7 @@ Zum Nachlesen, im Workshop nicht als Übung:
 | Notebook | Inhalt | Colab |
 |---|---|---|
 | Was hat es gelernt? | Worauf das Vogel-Modell schaut: Verdecken, Zoom, Unschärfe | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/01-vogel-oder-park/was_hat_es_gelernt.ipynb) |
-| Kreuzvalidierung | Wie viel eine Trefferquote auf 40 Bildern wert ist | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/01-vogel-oder-park/kreuzvalidierung.ipynb) |
+| Cross-Validation | Wie viel eine Accuracy auf 40 Bildern wert ist | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/01-vogel-oder-park/kreuzvalidierung.ipynb) |
 | Worktrees | Zwei Arbeitskopien eines Repos nebeneinander | [öffnen](https://colab.research.google.com/github/dprinz/ki-workshop-handson/blob/main/nachlesen-worktrees/worktrees.ipynb) |
 
 In Colab *Laufzeit → Alle ausführen*. Die erste Code-Zelle klont dieses Repo nach `/content`,
@@ -47,7 +47,7 @@ als ein aktueller Laptop. Gemessen in Colab am 4. November 2026:
 |---|---|---|
 | Vogel oder Park | Training 42 bis 67 s (drei Läufe) | unter 2 s |
 | Was hat es gelernt? | Test mit Zoom und Unschärfe 30 s | wenige Sekunden |
-| Kreuzvalidierung | Merkmale berechnen 21 s | wenige Sekunden |
+| Cross-Validation | Features berechnen 21 s | wenige Sekunden |
 | Auswendig gelernt | 46 bis 62 s pro Lauf, drei Läufe | 7 s pro Lauf |
 | Tokenizer | Tokenizer laden 22 s | 9 bis 19 s |
 | Base gegen Instruct | Modelle laden 48 s, jede Antwort 12 bis 13,5 s; mit T4 83 s und 2 bis 3,5 s | 12 bis 16 s, jede Antwort 1,5 bis 3 s |

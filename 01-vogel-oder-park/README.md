@@ -4,7 +4,7 @@ Kleines Jupyter-Notebook für den KI-Workshop: Ein vortrainiertes Bildmodell ler
 Vögeln von Fotos von Parks und Landschaften zu unterscheiden. Es läuft am ersten Workshop-Tag
 direkt nach dem xkcd-Comic „Tasks“, bevor die Grundlagen erklärt sind. Geplant als erste Übung:
 Die Teilnehmer führen es zu zweit in Colab aus, 15 min. Pflicht ist alles ausführen, die
-Trefferquote ablesen und die schwierigen Fälle ansehen, Zusatz ein eigenes Foto per URL oder
+Anzahl richtiger Bilder ablesen und die schwierigen Fälle ansehen, Zusatz ein eigenes Foto per URL oder
 Upload; beides steht oben im Notebook. Die Idee
 stammt aus dem fast.ai-Tutorial [„Is it a bird?“](https://www.kaggle.com/code/jhoward/is-it-a-bird-creating-a-model-from-your-own-data)
 von Jeremy Howard (Lektion 1 von [Practical Deep Learning](https://course.fast.ai/Lessons/lesson1.html)).
@@ -39,7 +39,7 @@ Sekunde.
 | Datei | Inhalt |
 |---|---|
 | `vogel_oder_park.ipynb` | das Notebook mit den fünf Schritten, Ausgaben aus einem echten Lauf |
-| `kreuzvalidierung.ipynb` | Wie viel die 39 von 40 wert sind: 100 Splits, Kreuzvalidierung, Varianten vergleichen. Nicht im Workshop eingeplant |
+| `kreuzvalidierung.ipynb` | Wie viel die 39 von 40 wert sind: 100 Splits, Cross-Validation, Varianten vergleichen. Nicht im Workshop eingeplant |
 | `was_hat_es_gelernt.ipynb` | Worauf das Modell schaut, Verdecken, Zoom, Unschärfe, kleiner Vogel im Park. Live am Ende der Grundlagen |
 | `helfer.py` | Bilder laden und anzeigen, ein eigenes Foto holen, damit das Notebook den Ablauf zeigt und nicht HTTP-Aufrufe |
 | `daten/` | 100 Vögel, 100 Parks, verkleinert auf 400 Pixel |
@@ -55,7 +55,7 @@ auf dem Bild ist, nicht wo (das wäre Object Detection). Das Notebook friert die
 übernommenen Parameter ein, auch die BatchNorm-Statistiken bleiben fest, und trainiert nur die
 neue letzte Schicht mit 1'026 Parametern.
 
-ImageNet enthält viele Vogelklassen, das Modell bringt also fast alles mit. Die hohe Trefferquote
+ImageNet enthält viele Vogelklassen, das Modell bringt also fast alles mit. Die hohe Accuracy
 zeigt, was vortrainierte Modelle leisten, nicht, dass Vogelerkennung in zwei Sekunden lernbar ist.
 
 ## Daten
@@ -96,7 +96,7 @@ ungeprüft. `git restore daten` holt den durchgesehenen Stand zurück.
   gegen Park: Stark unscharfe Parks gelten fast immer als Vogel (19 von 20 bei Radius 8), eine
   graue Fläche mit 70 %. Der Widder, der mit 54 % bei Vogel landet, passt dazu. Mehr in
   `was_hat_es_gelernt.ipynb`, gemessen an je 20 Bildern.
-- 40 Validierungsbilder sind wenig, ein Bild verschiebt die Trefferquote um 2,5 Prozentpunkte. Über
+- 40 Validierungsbilder sind wenig, ein Bild verschiebt die Accuracy um 2,5 Prozentpunkte. Über
   100 Splits streut das Ergebnis zwischen 38 und 40 von 40, siehe `kreuzvalidierung.ipynb`.
 - Es gibt nur zwei Klassen. Ein Foto ohne Vogel und ohne Park bekommt trotzdem eine der beiden
   Antworten.
