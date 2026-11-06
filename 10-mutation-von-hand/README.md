@@ -10,6 +10,12 @@ Eingeplant am zweiten Tag am frühen Nachmittag, im Block zur Verifikation direk
 „Würde der Test rot, wenn die Logik fehlt?“. Die folgende Folie „Ein grüner Test prüft nur, was
 in der Spezifikation steht“ geht in der Übung auf. 15 min zu zweit.
 
+- **Für alle:** Aufgabe 1 Spezifikation und Tests ansehen, Tests laufen lassen (61 grün); Aufgabe 2
+  zum Aufwärmen Fehler 3 einbauen (rot, 48 von 61) und zurücknehmen; Aufgabe 3 Fehler 6 bis 8
+  vermuten, einbauen, testen (alle grün) und die Gemeinsamkeit in der Spezifikation suchen
+- **Bonus:** Aufgabe 4 den Test schreiben, der Fehler 6 fängt; Aufgabe 5 (Knobelaufgabe) Tests,
+  die auch 7 und 8 fangen, wer mag mit einem einzigen Test
+
 ## Starten
 
 ```bash
@@ -29,13 +35,13 @@ JupyterLab nur die Standardbibliothek.
 
 | Datei | Inhalt |
 |---|---|
-| `mutation_von_hand.ipynb` | das Notebook mit drei Schritten und Zusatz, Ausgaben aus einem echten Lauf |
+| `mutation_von_hand.ipynb` | das Notebook mit drei Schritten und Bonus, Aufgaben 1–5, Ausgaben aus einem echten Lauf |
 | `spezifikation.md` | die Spezifikation des Parsers, aus der der Agent die Tests geschrieben hat; keine Obergrenze |
 | `sse_parser.py` | der Parser; das Notebook schreibt ihn mit `%%writefile` aus der Zelle, in der die Teilnehmer die Fehler einbauen |
 | `test_sse_parser.py` | die 61 generierten Tests, unverändert aus dem Lauf unten |
-| `helfer.py` | Tests in einem eigenen Prozess starten und die acht Mutationen automatisch durchprobieren |
+| `helfer.py` | Tests in einem eigenen Prozess starten (höchstens fünf rote Tests mit Meldung, der Rest gezählt; darunter, ob eine der acht Stellen der Tabelle verändert ist) und die acht Mutationen automatisch durchprobieren |
 
-`test_grenze.py` und `test_grenze_loesung.py` entstehen beim Ausführen des Zusatzes und stehen in `.gitignore`.
+`test_grenze.py` und `test_grenze_loesung.py` entstehen beim Ausführen der Bonusaufgaben und stehen in `.gitignore`.
 
 ## Woher die Tests stammen
 
@@ -79,14 +85,16 @@ kein Test rot wird. Die Aussage ist dieselbe: Die Tests sind so gut wie die Spez
 ## Gemessen
 
 MacBook Pro M3 Pro, `nbconvert --execute`: alle Zellen zusammen 1,3 s (mit Kernelstart 7 s).
+Nach dem Umbau in Aufgaben 1–5 erneut am 2026-11-06: alle Zellen zusammen 1,1 s (mit Kernelstart
+knapp 4 s); neue Zellen gibt es nur in Markdown.
 
 | Zelle | lokal | Colab-CPU, geschätzt |
 |---|---|---|
 | Tests laufen lassen (eigener Python-Prozess) | 0,04 s | unter 1 s |
-| alle acht Mutationen (neun Prozesse) | 0,4 s | 2 bis 10 s |
-| Zusatz mit eigenem Test und Lösung | je 0,5 s | 2 bis 10 s |
+| alle acht Mutationen (neun Prozesse) | 0,3 bis 0,4 s | 2 bis 10 s |
+| Bonus mit eigenem Test und Lösung | je 0,35 bis 0,5 s | 2 bis 10 s |
 
-Die Zeit geht fast ganz in den Start der Python-Prozesse, nicht in die Tests. In Colab (frische Laufzeit, Gratis-CPU, „Alle ausführen“, 2026-11-04) lief das Notebook ohne Fehler, die 61 Tests grün, die Mutationen wie in der Tabelle unten; pro Zelle nicht gemessen.
+Die Zeit geht fast ganz in den Start der Python-Prozesse, nicht in die Tests. In Colab (frische Laufzeit, Gratis-CPU, „Alle ausführen“, 2026-11-04, Stand vor dem Umbau in Aufgaben 1–5) lief das Notebook ohne Fehler, die 61 Tests grün, die Mutationen wie in der Tabelle unten; pro Zelle nicht gemessen.
 
 Ergebnis der Mutationen mit den generierten Tests:
 
@@ -101,7 +109,10 @@ Ergebnis der Mutationen mit den generierten Tests:
 | 7 | nur fertige Events prüfen, nicht den Rest | grün |
 | 8 | Zeichen statt Bytes zählen | grün |
 
-Mit den drei Tests der Zusatz-Lösung werden auch 6, 7 und 8 rot.
+Mit den drei Tests der Lösung zum Bonus werden auch 6, 7 und 8 rot. Ein einzelner Test reicht auch:
+ein Stück `"data: " + "ä" * 40_000` ohne abschliessende Leerzeile muss `EventZuGross` auslösen
+(40'006 Zeichen, 80'006 Bytes, das Event wird nie fertig); er fängt 6, 7 und 8 zusammen, geprüft
+am 2026-11-06.
 
 ## Bekannte Grenzen
 
@@ -110,7 +121,11 @@ Mit den drei Tests der Zusatz-Lösung werden auch 6, 7 und 8 rot.
 - Die Tests laufen in einem eigenen Prozess, damit nach jeder Änderung die neue `sse_parser.py`
   gilt. Ein `import` im Kernel würde den alten Stand behalten.
 - Zurücksetzen geht mit Cmd+Z bzw. Ctrl+Z in der Parser-Zelle. Die Zelle überschreibt
-  `sse_parser.py`; wer den Stand ganz verliert, öffnet das Notebook neu aus dem Repo.
+  `sse_parser.py`; wer den Stand ganz verliert, öffnet das Notebook neu aus dem Repo. Nach jedem
+  Testlauf meldet `helfer.py`, ob eine der acht Stellen der Tabelle noch verändert ist; die
+  Originalzeilen stehen in der Tabelle, die zwei Zeilen von Fehler 3 im Text von Aufgabe 2. Eine
+  Funktion zum Zurücksetzen gibt es bewusst nicht: Sie setzte nur die Datei zurück, nicht die Zelle,
+  und der nächste Lauf der Zelle schriebe den Fehler wieder hinein.
 - Ein zweiter Lauf des Prompts schreibt andere Tests. Dass ein Test zur Grenze fehlt, folgt aus
   der Spezifikation; dass es genau 61 Tests sind und welche, gilt nur für diesen Lauf.
 - Der Fehler mit `\r\n` über zwei Stücke steckt in derselben Form auch in `sse-parser.ts` von

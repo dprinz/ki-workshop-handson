@@ -3,9 +3,11 @@
 Kleines Jupyter-Notebook für den KI-Workshop: Ein vortrainiertes Bildmodell lernt, Fotos mit
 Vögeln von Fotos von Parks und Landschaften zu unterscheiden. Es läuft am ersten Workshop-Tag
 direkt nach dem xkcd-Comic „Tasks“, bevor die Grundlagen erklärt sind. Geplant als erste Übung:
-Die Teilnehmer führen es zu zweit in Colab aus, 15 min. Pflicht ist alles ausführen, die
-Anzahl richtiger Bilder ablesen und die schwierigen Fälle ansehen, Zusatz ein eigenes Foto per URL oder
-Upload; beides steht oben im Notebook. Die Idee
+Die Teilnehmer führen es zu zweit in Colab aus, 15 min. Die fünf Aufgaben stehen oben im
+Notebook und noch einmal an der Stelle, an der man sie macht. Für alle: alles ausführen und die
+Anzahl richtiger Bilder ablesen, die schwierigen Fälle ansehen, ein eigenes Foto testen (das Beispielfoto
+läuft ohne Änderung). Bonus: Parkfotos verwischen, bis das Modell sie für Vögel hält, und als
+Knobelaufgabe herausfinden, warum. Die Idee
 stammt aus dem fast.ai-Tutorial [„Is it a bird?“](https://www.kaggle.com/code/jhoward/is-it-a-bird-creating-a-model-from-your-own-data)
 von Jeremy Howard (Lektion 1 von [Practical Deep Learning](https://course.fast.ai/Lessons/lesson1.html)).
 
@@ -32,13 +34,16 @@ Danach im Menü *Kernel → Restart Kernel and Run All Cells*. Alle Zellen zusam
 MacBook Pro mit M3 Pro in rund 10 Sekunden, Training samt Prüfen in unter zwei Sekunden.
 In Colab auf der Gratis-CPU dauert das Training 42 bis 67 Sekunden (drei Läufe am 4. November
 2026). Das Beispielfoto liegt im Ordner; ein eigenes Foto per URL braucht lokal unter einer
-Sekunde.
+Sekunde. Die Bonusaufgaben rechnen ohne Training: Die Zelle zum Verwischen schickt 20 Bilder
+durchs Modell, die Lösung der Knobelaufgabe 140. Auf der CPU mit zwei Threads braucht das lokal
+0,3 s für 20 Bilder, in Colab geschätzt 2 bis 3 s für die Zelle und 10 bis 20 s für die Lösung.
+Das Notebook rechnet auf der GPU, wenn eine da ist (CUDA, auf dem Mac MPS), sonst auf der CPU.
 
 ## Was im Ordner liegt
 
 | Datei | Inhalt |
 |---|---|
-| `vogel_oder_park.ipynb` | das Notebook mit den fünf Schritten, Ausgaben aus einem echten Lauf |
+| `vogel_oder_park.ipynb` | das Notebook mit den fünf Schritten und fünf Aufgaben, Ausgaben aus einem echten Lauf |
 | `kreuzvalidierung.ipynb` | Wie viel die 39 von 40 wert sind: 100 Splits, Cross-Validation, Varianten vergleichen. Nicht im Workshop eingeplant |
 | `was_hat_es_gelernt.ipynb` | Worauf das Modell schaut, Verdecken, Zoom, Unschärfe, kleiner Vogel im Park. Live am Ende der Grundlagen |
 | `helfer.py` | Bilder laden und anzeigen, ein eigenes Foto holen, damit das Notebook den Ablauf zeigt und nicht HTTP-Aufrufe |
@@ -93,9 +98,15 @@ ungeprüft. `git restore daten` holt den durchgesehenen Stand zurück.
 ## Bekannte Grenzen
 
 - Vögel und Parks kommen aus verschiedenen Quellen. Das Modell hat dadurch mehr gelernt als Vogel
-  gegen Park: Stark unscharfe Parks gelten fast immer als Vogel (19 von 20 bei Radius 8), eine
-  graue Fläche mit 70 %. Der Widder, der mit 54 % bei Vogel landet, passt dazu. Mehr in
-  `was_hat_es_gelernt.ipynb`, gemessen an je 20 Bildern.
+  gegen Park: Stark unscharfe Parks gelten fast immer als Vogel, eine graue Fläche mit 70 %. Der
+  Widder, der mit 54 % bei Vogel landet, passt dazu. Mehr in `was_hat_es_gelernt.ipynb`, gemessen
+  an je 20 Bildern. Die Knobelaufgabe im Notebook lässt die Teilnehmer das selbst finden. Dort
+  gelten von den 20 Parks der Validierung bei Radius 0, 2, 4, 6 und 8 der Reihe nach 0, 0, 3,
+  10 und 18 als Vogel, die Vögel bleiben bei 19 von 20 (lokaler Lauf auf MPS, 6. November 2026;
+  `was_hat_es_gelernt.ipynb` misst 19 von 20 Parks bei Radius 8).
+- Die Wahrscheinlichkeiten hängen leicht vom Rechner ab. Die Postkarte bei den schwierigen Fällen
+  liegt nahe 50 %: auf MPS 51 % Vogel, auf der CPU 57 % Park; der Widder 54 % und 51 % Vogel.
+  Die Auflösung im Notebook sagt das.
 - 40 Validierungsbilder sind wenig, ein Bild verschiebt die Accuracy um 2,5 Prozentpunkte. Über
   100 Splits streut das Ergebnis zwischen 38 und 40 von 40, siehe `kreuzvalidierung.ipynb`.
 - Es gibt nur zwei Klassen. Ein Foto ohne Vogel und ohne Park bekommt trotzdem eine der beiden

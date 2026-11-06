@@ -8,8 +8,10 @@ Testversion: Inhalt und Aufbau ändern sich noch.
 ## In Colab öffnen
 
 Die Übungen in der Reihenfolge des Workshops. Die Nummer steht auf der Folie und vor dem Ordner.
-Jede ist für 10 bis 15 Minuten zu zweit gedacht, mit einem Pflichtteil und einer Zusatzaufgabe;
-die Lösungen liegen zugeklappt im Notebook.
+Jede ist für 10 bis 15 Minuten zu zweit gedacht und hat fünf Aufgaben, die nach und nach etwas
+schwieriger werden. Aufgabe 1 ist der Einstieg, 1 bis 3 sind für alle, 4 und 5 Bonus;
+die letzte ist eine Knobelaufgabe. Viele Aufgaben prüfen sich selbst und zeigen ✓, wenn sie
+stimmen. Tipps und Lösungen liegen zugeklappt direkt nach der Aufgabe.
 
 | Nr | Tag | Übung | Inhalt | Colab |
 |---|---|---|---|---|

@@ -9,8 +9,10 @@
 
 `apply_chat_template` zeigt den Text mit den Rollen-Markierungen, den das Modell wirklich bekommt.
 Dann die Verteilung für das nächste Token nach „Nenne eine Programmiersprache. Nur den Namen.“ bei
-T = 0,2, 1 und 2 (Top-5 und ihre Summe) und je zehn Züge. Zusatz: ein eigener Systemprompt im
-Template.
+T = 0,2, 1 und 2 (Top-5 und ihre Summe) und je zehn Züge. Das sind die Aufgaben 1 bis 3 für alle.
+Bonus: Aufgabe 4 ist ein eigener Systemprompt, mit dem Java vor Python liegt, Aufgabe 5 die
+Knobelaufgabe: ein Systemprompt, mit dem das Modell „Kotlin“ antwortet. Die naheliegenden („Du
+programmierst nur in Kotlin.“) lassen Java vorn.
 
 ## Welches Modell
 
@@ -50,19 +52,39 @@ Ganzes Notebook lokal 16 s, in Colab ohne GPU rund 1,5 Minuten.
 
 | Zelle | lokal | Colab ohne GPU |
 |---|---|---|
-| 1. Tokenizer und Template | 4 s | einige Sekunden (nur Tokenizer-Dateien, rund 11 MB) |
-| 2. Modell laden | 6 s | 35 s mit Download |
-| 3. Vorwärtslauf und Balken | 2,4 s | rund 3 s, gemessen 1,9 s für den Vorwärtslauf |
-| 4. Zehnmal ziehen, Lösung | unter 0,1 s | unter 1 s |
-| Zusatz, Lösung (je ein, zwei Vorwärtsläufe) | 0,7 s | 2 bis 4 s |
+| Tokenizer und Template (Aufgabe 1) | 4 s | einige Sekunden (nur Tokenizer-Dateien, rund 11 MB) |
+| Modell laden (Aufgabe 2) | 6 s | 35 s mit Download |
+| Vorwärtslauf und Balken (Aufgabe 2) | 2,4 s | rund 3 s, gemessen 1,9 s für den Vorwärtslauf |
+| Zehnmal ziehen, Lösung (Aufgabe 3) | unter 0,1 s | unter 1 s |
+| eigener Systemprompt, Lösung (Aufgabe 4, je ein Vorwärtslauf) | 0,1 bis 0,2 s | rund 1 s |
+| Knobelaufgabe (Aufgabe 5), pro Versuch bis zu fünf Vorwärtsläufe | 0,3 s, Lösung 0,8 s | 1 bis 3 s pro Versuch |
+
+Die Zeilen zu Aufgabe 4 und 5 sind lokal am 2026-11-06 gemessen, die Werte für Colab daraus geschätzt.
 
 ## Was das Modell tut
 
 Auf der CPU in float32 sind die Werte im Machbarkeitstest (Colab) und lokal gleich: Python 0,999
 bei T = 0,2; 0,689 bei T = 1 (Java 0,158, Top-5 zusammen 0,895); 0,054 bei T = 2 (Top-5 zusammen
-0,104). Systemprompts in der Lösung des Zusatzes: „Du bist ein Java-Entwickler.“ bringt Java bei
-T = 1 auf 0,435, „Du programmierst nur in Kotlin.“ lässt Java vorn (0,322) vor „K“ (0,203), dem
-ersten von zwei Token für „Kotlin“, „Antworte immer mit einer JVM-Sprache.“ bringt Java auf 0,739.
+0,104). Systemprompts in der Lösung von Aufgabe 4: „Du bist ein Java-Entwickler.“ bringt Java bei
+T = 1 auf 0,435 (Python 0,166), „Antworte immer mit einer JVM-Sprache.“ auf 0,739. Mit dem
+Ausgangstext der Zelle, „Du bist ein hilfreicher Assistent.“, liegt Python bei 0,800 (Java 0,132).
+
+Knobelaufgabe, erstes Token bei T = 1 („K“ ist das erste von zwei Token für „Kotlin“), lokal
+2026-11-06:
+
+| Systemprompt | „K“ | Java | Python | Antwort bei T = 0 |
+|---|---|---|---|---|
+| Du programmierst nur in Kotlin. | 0,203 | 0,322 | 0,090 | Java |
+| Du bist ein Kotlin-Entwickler. | 0,159 | 0,335 | 0,091 | Java |
+| Antworte immer mit Kotlin. | 0,168 | 0,415 | 0,075 | Java |
+| Antworte nur mit dem Wort Kotlin. | 0,541 | 0,181 | 0,189 | Kotlin |
+| Du liebst Kotlin. | 0,569 | 0,145 | 0,010 | Kotlin |
+| Kotlin ist die beste Programmiersprache. | 0,713 | 0,172 | 0,046 | Kotlin |
+| Nenne nie Java. Deine Antwort ist immer Kotlin. | 0,694 | 0,047 | 0,033 | Kotlin |
+| Deine Lieblingssprache ist Kotlin. | 0,756 | 0,042 | 0,013 | Kotlin |
+
+Weitere Versuche ohne Kotlin vorn: „Du bist ein Android-Entwickler.“ (Java 0,770), „You only program
+in Kotlin.“ („K“ 0,120, Java 0,391), „Du bist JetBrains-Mitarbeiter.“ (Python 0,574).
 
 ## Herkunft und Lizenzen
 

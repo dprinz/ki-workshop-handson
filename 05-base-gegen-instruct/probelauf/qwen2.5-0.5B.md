@@ -10,7 +10,7 @@ Gerät: cpu. Modelle: Qwen/Qwen2.5-0.5B und Qwen/Qwen2.5-0.5B-Instruct, float32.
 Download 1 s (fällt weg, wenn die Dateien schon da sind), Laden 8 s.
 ```
 
-#### 2. Ein Textanfang
+#### Ein Textanfang
 
 ```text
 Qwen2.5-0.5B setzt fort (50 Token in 2,1 s, nach 50 Token abgeschnitten):
@@ -28,7 +28,7 @@ individuelle Tests durchführt und darauf abzielt, dass die Funktion in einem be
 funktioniert. Ein guter
 ```
 
-#### 3. Eine Anweisung
+#### Eine Anweisung
 
 ```text
 Qwen2.5-0.5B setzt fort (50 Token in 1,7 s, nach 50 Token abgeschnitten):
@@ -46,7 +46,7 @@ Anwendungsfunktionsfehlung aufgegeben wird, wenn ein Programm nicht erfolgreich 
 oder ein spez
 ```
 
-#### 4. Ein Fakt, den das Modell nicht kennen kann
+#### Ein Fakt, den das Modell nicht kennen kann
 
 ```text
 Qwen2.5-0.5B setzt fort (50 Token in 1,8 s, nach 50 Token abgeschnitten):
@@ -62,7 +62,7 @@ Daniel Prinz hat seine Geburtstagsszene am 29. Mai 1960 im Friedenlandstil auf d
 stattgefunden. Er wurde in Baden-Württemberg
 ```
 
-#### 5. Nachhaken: „Bist du sicher?“
+#### Nachhaken: „Bist du sicher?“
 
 ```text
 Qwen2.5-0.5B-Instruct antwortet auf „Ist Java 17 eine LTS-Version?“ (50 Token in 1,8 s, nach 50 Token abgeschnitten):
@@ -76,7 +76,7 @@ Natürlich, ich bin sicher, dass Java 17 eine long-term support (LTS) Version is
 veröffentlicht und war ein weiterer Update für den Java-Standardmodell mit der Ziel
 ```
 
-#### A. FAQ-Anfang für das Base Model
+#### FAQ-Anfang für das Base Model
 
 ```text
 Qwen2.5-0.5B setzt fort (50 Token in 1,7 s, nach 50 Token abgeschnitten):
@@ -93,7 +93,7 @@ F: Was ist eine IndexOutOfBoundsException?
 A: Der Index eines Arrays, einer Kette oder eines Zylindern ist
 ```
 
-#### A. FAQ-Anfang für das Base Model, Lösung
+#### FAQ-Anfang für das Base Model, Lösung
 
 ```text
 Qwen2.5-0.5B setzt fort (35 Token in 1,6 s, hört bei „F:“ auf):
@@ -110,7 +110,25 @@ Wert und sehen wir die Fehlermeldung.)
 F:
 ```
 
-#### B. Ein eigener Prompt
+#### Knobelaufgabe: „Das weiss ich nicht“ ohne Post-Training
+
+```text
+Daniel Prinz           0,00   Ziel: über 0,5
+Johann Sebastian Bach  0,00   Ziel: unter 0,1
+
+Bei Daniel Prinz noch zu selten.
+```
+
+#### Knobelaufgabe: „Das weiss ich nicht“ ohne Post-Training, Lösung
+
+```text
+Daniel Prinz           0,62   Ziel: über 0,5
+Johann Sebastian Bach  0,05   Ziel: unter 0,1
+
+✓ Bei Daniel Prinz meist „Das weiss ich nicht“, bei Bach ein Datum.
+```
+
+#### Zum Ausprobieren: ein eigener Prompt
 
 ```text
 Qwen2.5-0.5B setzt fort (50 Token in 1,8 s, nach 50 Token abgeschnitten):

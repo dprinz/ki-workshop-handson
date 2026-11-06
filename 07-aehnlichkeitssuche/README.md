@@ -6,12 +6,16 @@ Wissensbasis, die Suche als Schleife über alle Chunks. Die Vektoren der Chunks 
 und liegen im Ordner. Im Notebook wird nur der Suchtext eingebettet.
 
 - **Wann:** Tag 1 am Nachmittag, direkt nach der Live-Demo der Java-Suche im Block zu RAG
-- **Pflicht:** die Suchen der Live-Demo (Dämmerung, Alter des Universums, zweimal OIII-Filter), die
-  Schleife im Notebook lesen, eine eigene Suche
-- **Zusatz:** ohne die Präfixe `query: ` und `passage: ` suchen
+- **Für alle:** 1. ein Text wird ein Vektor (Einstieg), 2. zwei Texte vergleichen: Distanz
+  vorbereiteter Paare erst vermuten, dann eigene Paare, 3. die Suchen der Live-Demo (Dämmerung,
+  Alter des Universums, zweimal OIII-Filter) und eine eigene Suche
+- **Bonus:** 4. ohne die Präfixe `query: ` und `passage: ` suchen, 5. Knobelaufgabe: die Suche um
+  einen Schwellwert ergänzen; kein fester Wert ordnet vier Fragen richtig ein
 
-15 min, zu zweit. Die Lösung steht zugeklappt direkt nach der Aufgabe. Gemessen wird diese Suche
-am zweiten Tag in `08-suche-messen`.
+15 min, zu zweit. Wo Code zu ergänzen ist, prüft eine Zelle das Ergebnis (✓ oder ✗ mit Sollwert).
+Danach folgen gestufte Tipps und die Lösung, zugeklappt und mit eigenen Namen
+(`suche_mit_grenze_loesung`), damit sie beim *Alle ausführen* nichts überschreibt. Gemessen wird
+diese Suche am zweiten Tag in `08-suche-messen`.
 
 ## Starten
 
@@ -31,10 +35,10 @@ plus 17 MB Tokenizer) in den Cache unter `~/.cache/huggingface/`; danach braucht
 
 | Datei | Inhalt |
 |---|---|
-| `aehnlichkeitssuche.ipynb` | Übung am ersten Tag, Ausgaben aus einem echten Lauf |
+| `aehnlichkeitssuche.ipynb` | Übung am ersten Tag, Ausgaben aus einem echten Lauf (die Aufgabenzelle der Knobelaufgabe zeigt die Suche ohne Schwellwert) |
 | `helfer.py` | Modell laden, Text einbetten (Mean Pooling, Normierung), Daten laden, Treffer drucken |
 | `index/mit_praefix.npy` | Vektoren der 643 Chunks mit `passage: `, 643 × 384, float16, 494 KB |
-| `index/ohne_praefix.npy` | dieselben Chunks ohne Präfix, für den Zusatz |
+| `index/ohne_praefix.npy` | dieselben Chunks ohne Präfix, für den Bonus |
 | `index_bauen.py` | berechnet die beiden Dateien unter `index/` neu, nur lokal |
 | `daten/chunks.json` | die 643 Chunks: Dokument-Id, Titel, Abschnitt, Thema, Text |
 | `daten/questions.json` | 20 Testfragen mit Fundstellen und 3 ohne, Stand 2026-10-05 |
@@ -52,7 +56,8 @@ für den Download 15 bis 50 MB/s.
 |---|---|---|
 | erste Zelle: Import, Modell laden, Index laden | 7 bis 11 s | 15 bis 30 s, beim ersten Mal plus Download 10 bis 30 s |
 | eine Suche (Embedding und Schleife über 643 Chunks) | rund 10 ms, die erste 74 ms | unter 0,5 s |
-| alle übrigen Zellen zusammen | unter 0,5 s | wenige Sekunden |
+| zwei Texte vergleichen: 14 Texte einzeln einbetten | 80 ms | unter 1 s |
+| alle übrigen Zellen zusammen | unter 1 s | wenige Sekunden |
 | `index_bauen.py`: 1'286 Embeddings, ohne Download | rund 2 min | nicht nötig |
 
 Der Download dauerte beim Bau lokal 7 min, weil parallel ein anderes Modell geladen wurde; das
@@ -88,6 +93,23 @@ gleich nach 512 Token ab; der Rest des Chunks fliesst nicht in den Vektor ein. I
 Tokenizer von DJL ab (Voreinstellung `LONGEST_FIRST`, 512 Token); die Aufteilung langer Texte in
 LangChain4j greift deshalb nie.
 
+## Befunde aus den Aufgaben
+
+Distanzen aus dem Python-Lauf vom 2026-11-06; in Java liegen sie um 0,001 bis 0,009 tiefer (Abgleich oben).
+
+- **Distanz von Textpaaren** (Aufgabe 2, beide Texte mit `query: `): Dämmerung zu Abenddämmerung
+  0.039, Sonnenuntergang 0.117, Pizza 0.164, twilight 0.165, NullPointerException 0.202. „Wann
+  beginnt die astronomische Dämmerung?“ zu „Wann wird es nachts dunkel genug für Sterne?“ 0.103, zu
+  „Wie behebe ich eine NullPointerException?“ 0.261. Teleskop zu Mikroskop 0.079, zu Fernrohr 0.188.
+  Bei einzelnen Wörtern ist die Reihenfolge also wenig verlässlich. Alle Werte liegen unter 0,3:
+  Laut Modellkarte von `multilingual-e5-small` (FAQ, Frage 3) liegt der Kosinus wegen der tiefen
+  Temperatur 0,01 im kontrastiven Training meist zwischen 0,7 und 1, es zählt die Reihenfolge,
+  nicht der Wert.
+- **Schwellwert an vier Fragen** (Aufgabe 5), bester Treffer: „Wie viel kostet eine Astrokamera?“
+  0.172 (Astrophotography – Amateur astrophotography; der Korpus nennt keine Preise), Dämmerung
+  0.173, Universum 0.206, „Was ist Seeing?“ 0.230 (Astronomical seeing – Introduction auf Rang 1).
+  Kein fester Wert ordnet alle vier richtig ein.
+
 ## Index neu bauen
 
 ```bash
@@ -113,7 +135,8 @@ Bettet jeden Chunk zweimal ein, mit `passage: ` und ohne, und speichert float16.
 
 - In Colab (frische Laufzeit, Gratis-CPU, „Alle ausführen“, 2026-11-04) lief das Notebook ohne
   Fehler, samt Download in rund einer Minute. Die Zeiten pro Schritt in der Tabelle oben sind
-  geschätzt.
+  geschätzt. Die Fassung mit nummerierten Aufgaben, Selbstkontrolle und Knobelaufgabe
+  (2026-11-06) lief bisher nur lokal.
 - Die Ergebnisse weichen leicht von der Live-Demo ab (Tabelle oben); beim Alter des Universums ist
   der beste Treffer ein anderer. Das Notebook sagt das an der Stelle, wo es auffällt.
 - `daten/HERKUNFT-ASTROPLANNER.md` verweist auf Dateien und Abschnitte von AstroPlanner, die im

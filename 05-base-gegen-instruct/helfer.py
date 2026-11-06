@@ -77,6 +77,20 @@ class Modell:
         _drucke(f"»{text}«{antwort}")
         return antwort
 
+    def wahrscheinlichkeit(self, text, fortsetzung):
+        """Wie wahrscheinlich schreibt das Modell nach dem Text als Nächstes genau diese Fortsetzung, bei T = 1?
+
+        Ein Vorwärtslauf über Text und Fortsetzung, dann das Produkt der Wahrscheinlichkeiten
+        der Token der Fortsetzung, jedes gegeben alles davor.
+        """
+        vorne = self.tokenizer(text).input_ids
+        hinten = self.tokenizer(fortsetzung).input_ids
+        eingabe = torch.tensor([vorne + hinten], device=self.geraet)
+        with torch.no_grad():
+            logits = self.modell(eingabe).logits[0, len(vorne) - 1 : -1].float()
+        p = torch.softmax(logits, dim=-1)
+        return float(p[range(len(hinten)), hinten].prod())
+
     def chat(self, nachrichten, max_token=50):
         """Instruct-Modell: Die Nachrichten gehen durch das Chat-Template, das Modell antwortet."""
         text = self.tokenizer.apply_chat_template(nachrichten, tokenize=False, add_generation_prompt=True)

@@ -7,14 +7,17 @@ Schleife über alle Chunks. Die Vektoren der Chunks sind vorberechnet und liegen
 Notebook wird nur der Suchtext eingebettet.
 
 - **Wann:** Tag 2 am Vormittag, nach der Folie zum Fragenset im Block zu Eval
-- **Pflicht:** Hit Rate@5 und MRR@5 über die 20 Testfragen selbst ausrechnen (zwei Funktionen
-  ergänzen), mit dem Java-Lauf vergleichen, ohne Präfixe messen
-- **Zusatz:** eine Testfrage schreiben, die die Suche verfehlt
+- **Für alle:** 1. Ränge der 20 Testfragen ablesen (Einstieg), 2. `hit_rate` ergänzen, 3. `mrr`
+  ergänzen, beide mit Selbstkontrolle an vier Beispielen; dann mit dem Java-Lauf vergleichen und
+  ohne Präfixe messen
+- **Bonus:** 4. eine Testfrage schreiben, die die Suche verfehlt, 5. Knobelaufgabe: für
+  Schwellwerte von 0,17 bis 0,24 zählen, wie viele Fragen abgewiesen oder durchgelassen würden
 
 15 min, zu zweit. Das Notebook läuft für sich, ohne `07-aehnlichkeitssuche`, weil Colab über
-Nacht die Laufzeit verliert. Lösungen stehen zugeklappt direkt nach der Aufgabe und verwenden
-eigene Namen (`loesung_hit_rate`, `loesung_mrr`), damit sie beim *Alle ausführen* nichts
-überschreiben.
+Nacht die Laufzeit verliert. Wo Code zu ergänzen ist, prüft eine Zelle das Ergebnis (✓ oder ✗ mit
+Sollwert). Danach folgen gestufte Tipps und die Lösung, zugeklappt und mit eigenen Namen
+(`loesung_hit_rate`, `loesung_mrr`, `fehler_loesung`), damit sie beim *Alle ausführen* nichts
+überschreibt.
 
 ## Starten
 
@@ -34,7 +37,7 @@ plus 17 MB Tokenizer) in den Cache unter `~/.cache/huggingface/`; danach braucht
 
 | Datei | Inhalt |
 |---|---|
-| `suche_messen.ipynb` | Übung am zweiten Tag, Ausgaben aus einem echten Lauf (die Aufgabenzelle zu Schritt 4 zeigt 0.00, weil die Funktionen dort noch leer sind) |
+| `suche_messen.ipynb` | Übung am zweiten Tag, Ausgaben aus einem echten Lauf (die Aufgabenzellen zu Schritt 4 und zur Knobelaufgabe zeigen 0, weil die Funktionen dort noch leer sind) |
 | `helfer.py` | Modell laden, Text einbetten (Mean Pooling, Normierung), Daten laden, Treffer drucken |
 | `index/mit_praefix.npy` | Vektoren der 643 Chunks mit `passage: `, 643 × 384, float16, 494 KB |
 | `index/ohne_praefix.npy` | dieselben Chunks ohne Präfix, für Schritt 6 |
@@ -57,7 +60,8 @@ für den Download 15 bis 50 MB/s.
 | erste Zelle: Import, Modell laden, Index laden | 7 bis 11 s | 15 bis 30 s, beim ersten Mal plus Download 10 bis 30 s |
 | eine Suche (Embedding und Schleife über 643 Chunks) | rund 10 ms, die erste 74 ms | unter 0,5 s |
 | Ränge der 20 Testfragen | 52 ms | unter 1 s |
-| alle übrigen Zellen zusammen | unter 0,5 s | wenige Sekunden |
+| Knobelaufgabe: 23 Fragen auf einmal einbetten und suchen | 51 ms | unter 0,5 s |
+| alle übrigen Zellen zusammen | unter 1 s | wenige Sekunden |
 
 ## Abgleich mit dem Java-Lauf vom 2026-10-31
 
@@ -90,6 +94,16 @@ gleich nach 512 Token ab; der Rest des Chunks fliesst nicht in den Vektor ein. I
 Tokenizer von DJL ab (Voreinstellung `LONGEST_FIRST`, 512 Token); die Aufteilung langer Texte in
 LangChain4j greift deshalb nie.
 
+## Befunde aus der Knobelaufgabe
+
+Schwellwert über das Fragenset, Distanzen aus dem Python-Lauf vom 2026-11-06, abgewiesen mit
+Fundstelle / durchgelassen ohne: 0,17: 11/0, 0,18: 7/0, 0,19: 5/0, 0,20: 2/0, 0,21: 0/1, 0,22:
+0/1, 0,23: 0/2, 0,24: 0/3. Am wenigsten Fehler bei 0,21 und 0,22, dann kommt das Alter des
+Universums durch. Mit drei Fragen ohne Fundstelle hängt das Minimum an einer Frage. Am knappsten
+liegt die Frage nach der Temperatur des Erdkerns (N-03) mit 0.2303 über der Stufe 0,23; zeigt
+Colab dort eine andere Zahl, ist das der Grund. Alle anderen Fragen liegen mindestens 0,001 neben
+einer Stufe.
+
 ## Herkunft und Lizenzen
 
 - **Texte und Fragen**: Kopie aus dem Java-Programm, dort aus AstroPlanner, Stand `ea7d554`.
@@ -106,7 +120,9 @@ LangChain4j greift deshalb nie.
 
 - In Colab (frische Laufzeit, Gratis-CPU, „Alle ausführen“, 2026-11-04) lief das Notebook ohne
   Fehler, mit denselben Werten wie lokal (Hit Rate@5 0,95, MRR@5 0,90), samt Verbinden und
-  Modell-Download in 49 s. Die Zeiten pro Schritt in der Tabelle oben sind geschätzt.
+  Modell-Download in 49 s. Die Zeiten pro Schritt in der Tabelle oben sind geschätzt. Die Fassung
+  mit nummerierten Aufgaben, Selbstkontrollen und Knobelaufgabe (2026-11-06) lief bisher nur
+  lokal.
 - Die Ergebnisse weichen leicht vom Java-Lauf ab (Tabelle oben). Das Notebook sagt das an der
   Stelle, wo es auffällt.
 - `daten/HERKUNFT-ASTROPLANNER.md` verweist auf Dateien und Abschnitte von AstroPlanner, die im

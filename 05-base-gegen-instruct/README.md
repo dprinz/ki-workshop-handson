@@ -10,8 +10,12 @@
 Qwen2.5 als Base Model und als Instruct-Modell bekommen dieselben Prompts wie Llama 3.1 8B auf den
 Folien: den Textanfang „Ein guter Unit-Test“, die Anweisung zur NullPointerException, „Wann hat
 Daniel Prinz Geburtstag?“ und nach der Frage zu Java 17 LTS die Nachfrage „Bist du sicher? Ich
-glaube, das stimmt nicht.“ Am Ende der Vergleich mit der Tabelle der Folie. Zusatz: ein FAQ-Anfang
-für das Base Model mit Stop-Sequenz, ein eigener Prompt.
+glaube, das stimmt nicht.“ Am Ende der Vergleich mit der Tabelle der Folie. Das sind die
+Aufgaben 1 bis 3 für alle. Bonus: Aufgabe 4 ist ein FAQ-Anfang für das Base Model mit Stop-Sequenz,
+Aufgabe 5 die Knobelaufgabe: Beispiele vor der Geburtstagsfrage so wählen, dass das Base Model bei
+Daniel Prinz „Das weiss ich nicht“ antwortet, bei Johann Sebastian Bach aber ein Datum (Few-Shot
+statt Post-Training). Die Zelle misst dafür die Wahrscheinlichkeit der Antwort, statt zu ziehen. Am
+Ende eine Zelle für einen eigenen Prompt, ohne Aufgabe.
 
 ## Welches Modell
 
@@ -57,7 +61,7 @@ Beim ersten Start lädt `transformers` die Modelle von Hugging Face in `~/.cache
 | Datei | Inhalt |
 |---|---|
 | `base_und_instruct.ipynb` | Übung Base gegen Instruct, Ausgaben aus dem Lauf mit 1,5B auf dem Mac |
-| `helfer.py` | Gerät und Grösse wählen, Modelle laden, Text erzeugen und ausgeben, Balken zeichnen |
+| `helfer.py` | Gerät und Grösse wählen, Modelle laden, Text erzeugen und ausgeben, Wahrscheinlichkeit einer Fortsetzung, Balken zeichnen |
 | `probelauf/qwen2.5-1.5B.md` | Ausgaben des Laufs mit 1,5B, für den Anhang |
 | `probelauf/qwen2.5-0.5B.md` | Ausgaben eines Laufs mit 0,5B auf der CPU, für den Anhang |
 
@@ -77,14 +81,16 @@ Ganzes Notebook lokal: 42 s mit 1,5B auf MPS, 44 s mit 0,5B auf der CPU.
 
 | Zelle | lokal | Colab mit T4 (1,5B) | Colab ohne GPU (0,5B) |
 |---|---|---|---|
-| 1. Modelle laden | 16 s (1,5B), 12 s (0,5B) | 83 s (44 s Download, 39 s Laden) | 48 s (22 s Download, 15 s Laden) |
-| 2. bis 4., je zwei Antworten mit 50 Token | 3 bis 6 s | 2 bis 3,5 s pro Antwort | 12 bis 13,5 s pro Antwort |
-| 5. Nachhaken, zwei Antworten | 3 s | rund 5 s | rund 25 s |
-| Zusatz A, Lösung mit bis zu 100 Token | 2 s | bis 7 s | bis 27 s |
-| Zusatz B | 3 s | rund 5 s | rund 25 s, mit `max_token=100` rund 50 s |
+| Modelle laden (Aufgabe 1) | 16 s (1,5B), 12 s (0,5B) | 83 s (44 s Download, 39 s Laden) | 48 s (22 s Download, 15 s Laden) |
+| Textanfang, Anweisung, Geburtstag (Aufgaben 1 und 2), je zwei Antworten mit 50 Token | 3 bis 6 s | 2 bis 3,5 s pro Antwort | 12 bis 13,5 s pro Antwort |
+| Nachhaken (Aufgabe 3), zwei Antworten | 3 s | rund 5 s | rund 25 s |
+| FAQ, Lösung mit bis zu 100 Token (Aufgabe 4) | 2 s | bis 7 s | bis 27 s |
+| Knobelaufgabe (Aufgabe 5), pro Versuch zwei Vorwärtsläufe | 0,3 bis 0,4 s | unter 1 s | 2 bis 4 s |
+| eigener Prompt am Ende | 3 s | rund 5 s | rund 25 s, mit `max_token=100` rund 50 s |
 
 Ganzes Notebook in Colab: mit T4 rund 2,5 Minuten, ohne GPU rund 3,5 Minuten. Die erste Zelle
-startet deshalb, während noch erklärt wird. Zusatz A und B sind aus der Token-Rate hochgerechnet.
+startet deshalb, während noch erklärt wird. Aufgabe 4 und der eigene Prompt sind aus der Token-Rate
+hochgerechnet, die Knobelaufgabe (lokal gemessen am 2026-11-06) mit dem Faktor 6 bis 10 der CPU.
 
 ## Was die Modelle tun
 
@@ -100,10 +106,31 @@ Eigener Lauf mit den Einstellungen des Notebooks, je 10 Läufe, Base und Instruc
 Gezählt von Hand aus den Texten; „Datum oder Jahr“ heisst, die Fortsetzung nennt für Daniel Prinz
 ein Geburtsdatum oder Geburtsjahr. Der Machbarkeitstest (drei Läufe, andere Werte für top_k und
 repetition_penalty) kam zum selben Bild: 1,5B lehnte die Geburtstagsfrage 3 von 3 Mal ab, 0,5B
-erfand 3 von 3 Mal ein Datum. Die Tabelle im Notebook (Schritt 6) zeigt dieselben Zahlen.
+erfand 3 von 3 Mal ein Datum. Die Tabelle im Notebook (bei Aufgabe 3) zeigt dieselben Zahlen.
 
 Die Erklärung der NullPointerException ist bei beiden Grössen flüssig, aber ungenau, bei 0,5B
 fachlich falsch (Machbarkeitstest und Probeläufe).
+
+**Knobelaufgabe, Few-Shot beim Base Model.** Gemessen ist die Wahrscheinlichkeit, dass das Base Model
+nach den Beispielen als Nächstes „ Das weiss ich nicht“ schreibt (Produkt der Token-Wahrscheinlichkeiten
+bei T = 1, ein Vorwärtslauf), Mac, 2026-11-06, 1,5B auf MPS in float16, 0,5B auf der CPU:
+
+| Beispiele vor der Frage | 1,5B: Prinz | 1,5B: Bach | 0,5B: Prinz | 0,5B: Bach |
+|---|---|---|---|---|
+| Einstein und Mozart mit Datum (Ausgangstext) | 0,00 | 0,00 | 0,00 | 0,00 |
+| dasselbe, dazu in der ersten Zeile die Regel „Bei Personen ohne eigenen Wikipedia-Artikel steht: Das weiss ich nicht.“ | 0,00 | 0,00 | 0,00 | 0,00 |
+| zwei bekannte, zwei unbekannte abwechselnd | 0,23 | 0,01 | 0,16 | 0,03 |
+| nur drei unbekannte | 0,86 | 0,49 | 0,92 | 0,84 |
+| zwei bekannte, fünf unbekannte (Lösung) | 0,77 | 0,02 | 0,62 | 0,05 |
+
+Mit der Lösung liegt Marie Curie bei 0,05 (1,5B) und 0,31 (0,5B): Das kleine Modell trennt bekannte
+und unbekannte Personen weniger sauber. Gezogen mit den Einstellungen des Notebooks (T = 0,8) passt
+das grob: Mit drei unbekannten zwischen zwei bekannten Personen sagte das Base Model bei beiden Grössen
+in 13 von 30 Läufen „Das weiss ich nicht“ (gerechnet 0,48 und 0,46), mit nur Einstein und Mozart in
+0 von 30. Die Werte für 1,5B sind auf MPS gemessen; mit der T4 kann die zweite Stelle abweichen.
+Gemessen wird bis „nicht“ ohne Punkt: Steht im Beispiel „Das weiss ich nicht.“ ohne weiteren Satz,
+fasst der Tokenizer Punkt und Zeilenumbruch zu einem Token zusammen, ein Punkt allein wäre dann
+unwahrscheinlich.
 
 ## Herkunft und Lizenzen
 
@@ -120,6 +147,8 @@ geladen von Hugging Face (`Qwen/Qwen2.5-…`). Das Notebook enthält keine Daten
   bis 150 (Base) und 500 Token (Instruct) schreiben; ob das Base Model erst nach 50 Token zur
   Antwort kommt, sieht man hier nicht.
 - Die Zählung mit 10 Läufen ist ein grober Hinweis, keine Quote. Für 1,5B lief sie in float32 auf
-  MPS, das Notebook nimmt float16 (MPS und Colab).
+  MPS, das Notebook nimmt float16 (MPS und Colab). Nachgezählt am 2026-11-06, nur die erste Antwort
+  zu Java 17 LTS, je 20 Läufe auf MPS: richtig in 13 von 20 mit float32, in 10 von 20 mit float16.
+  Das Notebook sagt deshalb „oft, aber nicht immer richtig“.
 - `transformers` muss mindestens 4.56 sein (`dtype=` beim Laden). Der Machbarkeitstest lief in Colab
   mit `dtype=`, die Version dort ist also neu genug.

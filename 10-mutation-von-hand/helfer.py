@@ -9,6 +9,7 @@ from pathlib import Path
 
 ORDNER = Path(__file__).parent
 PARSER = ORDNER / "sse_parser.py"
+ROTE_ZEIGEN = 5  # so viele rote Tests zeigt tests_laufen_lassen mit Meldung, der Rest wird nur gezählt
 
 # Nummer, was sich ändert, Text im Parser, Ersatz. Dieselben Mutationen wie in der Tabelle im Notebook.
 MUTATIONEN = [
@@ -31,6 +32,20 @@ MUTATIONEN = [
 ]
 
 
+def _veraendert(quelle):
+    """Nummern der Fehler aus der Tabelle, deren Originalzeile im Parser nicht mehr steht."""
+    return [nummer for nummer, _, alt, _ in MUTATIONEN if quelle.count(alt) != 1]
+
+
+def _zustand(quelle):
+    veraendert = _veraendert(quelle)
+    if not veraendert:
+        return "Parser: alle acht Stellen der Tabelle wie im Original."
+    stellen = "der Stelle von Fehler " if len(veraendert) == 1 else "den Stellen von Fehler "
+    return (f"Parser: verändert an {stellen}{', '.join(veraendert)}. "
+            "Vor dem nächsten Versuch zurücknehmen, die Originalzeile steht in der Tabelle.")
+
+
 def _unittest(ordner, testdateien, ausfuehrlich):
     shutil.rmtree(Path(ordner) / "__pycache__", ignore_errors=True)
     module = [Path(datei).stem for datei in testdateien]
@@ -41,21 +56,29 @@ def _unittest(ordner, testdateien, ausfuehrlich):
 def tests_laufen_lassen(*testdateien, ausfuehrlich=False):
     """Startet unittest in einem eigenen Prozess, damit immer die aktuelle sse_parser.py gilt."""
     lauf = _unittest(ORDNER, testdateien or ["test_sse_parser.py"], ausfuehrlich)
+    zustand = _zustand(PARSER.read_text(encoding="utf-8"))
     if ausfuehrlich:
         print(lauf.stderr)
     elif "Ran " not in lauf.stderr:
         print("Die Tests sind nicht gestartet, Python kann den Code nicht laden:")
         print(lauf.stderr.strip().splitlines()[-1])
         print("Tipp: Ein Block braucht mindestens eine Zeile. Wer eine Zeile ganz löscht, schreibt pass hin.")
+        print(zustand)
         return
     elif lauf.returncode != 0:
+        rote = []  # pro rotem Test: Name, darunter die Fehlermeldung
         for zeile in lauf.stderr.splitlines():
             if zeile.startswith(("FAIL:", "ERROR:")):
-                print(zeile.split(" (")[0])
-            elif zeile.startswith("AssertionError") or "Error:" in zeile and not zeile.startswith(" "):
-                print("   ", zeile)
+                rote.append([zeile.split(" (")[0]])
+            elif rote and (zeile.startswith("AssertionError") or "Error:" in zeile and not zeile.startswith(" ")):
+                rote[-1].append("    " + zeile)
+        for eintrag in rote[:ROTE_ZEIGEN]:
+            print("\n".join(eintrag))
+        if len(rote) > ROTE_ZEIGEN:
+            print(f"… und {len(rote) - ROTE_ZEIGEN} weitere. Alle: helfer.tests_laufen_lassen(ausfuehrlich=True)")
         print()
     print("Ergebnis:", _ergebnis(lauf))
+    print(zustand)
 
 
 def _ergebnis(lauf):
@@ -78,9 +101,16 @@ def mutationen_pruefen(*testdateien):
             shutil.copy(ORDNER / datei, tmp)
         (Path(tmp) / "sse_parser.py").write_text(quelle, encoding="utf-8")
         if _unittest(tmp, testdateien, ausfuehrlich=False).returncode != 0:
-            print("Die Tests sind schon ohne Mutation rot. Ist der Parser oben noch verändert, oder schlägt ein eigener Test fehl?")
+            if _veraendert(quelle):
+                print("Die Tests sind schon ohne Mutation rot.", _zustand(quelle))
+            else:
+                print("Die Tests sind schon ohne Mutation rot, obwohl die acht Stellen der Tabelle wie im Original sind. "
+                      "Schlägt ein eigener Test fehl? helfer.tests_laufen_lassen(...) mit der Testdatei zeigt, welcher.")
             return
-        print(f"Tests: {', '.join(testdateien)}\n")
+        print(f"Tests: {', '.join(testdateien)}")
+        if _veraendert(quelle):
+            print(_zustand(quelle))
+        print()
         for nummer, beschreibung, alt, neu in MUTATIONEN:
             if quelle.count(alt) != 1:
                 print(f"{nummer}  {beschreibung:<46} Zeile nicht gefunden, Parser zurücksetzen")

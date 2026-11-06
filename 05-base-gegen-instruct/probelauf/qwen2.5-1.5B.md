@@ -10,7 +10,7 @@ Gerät: mps. Modelle: Qwen/Qwen2.5-1.5B und Qwen/Qwen2.5-1.5B-Instruct, float16.
 Download 0 s (fällt weg, wenn die Dateien schon da sind), Laden 13 s.
 ```
 
-#### 2. Ein Textanfang
+#### Ein Textanfang
 
 ```text
 Qwen2.5-1.5B setzt fort (50 Token in 4,1 s, nach 50 Token abgeschnitten):
@@ -35,7 +35,7 @@ Ein guter Unit-Test besteht aus mehreren wesentlichen Elementen:
    - Testet, ob das Programm korre
 ```
 
-#### 3. Eine Anweisung
+#### Eine Anweisung
 
 ```text
 Qwen2.5-1.5B setzt fort (50 Token in 1,7 s, nach 50 Token abgeschnitten):
@@ -51,7 +51,7 @@ versucht, auf eine verweilte Referenz an null zugreifen. Ein solcher Fehler wird
 sich die Variable,
 ```
 
-#### 4. Ein Fakt, den das Modell nicht kennen kann
+#### Ein Fakt, den das Modell nicht kennen kann
 
 ```text
 Qwen2.5-1.5B setzt fort (50 Token in 1,6 s, nach 50 Token abgeschnitten):
@@ -69,7 +69,7 @@ Daniel Prinz geben. Der Name Daniel Prinz ist nicht sehr bekannt und es gibt wah
 offizielles Geb
 ```
 
-#### 5. Nachhaken: „Bist du sicher?“
+#### Nachhaken: „Bist du sicher?“
 
 ```text
 Qwen2.5-1.5B-Instruct antwortet auf „Ist Java 17 eine LTS-Version?“ (50 Token in 1,4 s, nach 50 Token abgeschnitten):
@@ -83,7 +83,7 @@ Entschuldigung für die Verwirrung. Sie haben Recht. Es stimmt nicht, dass Java 
 ist. Das ist ein Fehlbelegungsfehler in meiner Antwort. Ich dan
 ```
 
-#### A. FAQ-Anfang für das Base Model
+#### FAQ-Anfang für das Base Model
 
 ```text
 Qwen2.5-1.5B setzt fort (50 Token in 1,5 s, nach 50 Token abgeschnitten):
@@ -100,7 +100,7 @@ not an object" bezeichnet werden. Das bedeutet, dass der Code hiermit fehlschlä
 ```
 ```
 
-#### A. FAQ-Anfang für das Base Model, Lösung
+#### FAQ-Anfang für das Base Model, Lösung
 
 ```text
 Qwen2.5-1.5B setzt fort (39 Token in 1,5 s, hört bei „F:“ auf):
@@ -117,7 +117,25 @@ method is null oder an attribute of an object is not initialized.
 F:
 ```
 
-#### B. Ein eigener Prompt
+#### Knobelaufgabe: „Das weiss ich nicht“ ohne Post-Training
+
+```text
+Daniel Prinz           0,00   Ziel: über 0,5
+Johann Sebastian Bach  0,00   Ziel: unter 0,1
+
+Bei Daniel Prinz noch zu selten.
+```
+
+#### Knobelaufgabe: „Das weiss ich nicht“ ohne Post-Training, Lösung
+
+```text
+Daniel Prinz           0,77   Ziel: über 0,5
+Johann Sebastian Bach  0,02   Ziel: unter 0,1
+
+✓ Bei Daniel Prinz meist „Das weiss ich nicht“, bei Bach ein Datum.
+```
+
+#### Zum Ausprobieren: ein eigener Prompt
 
 ```text
 Qwen2.5-1.5B setzt fort (50 Token in 1,3 s, nach 50 Token abgeschnitten):
